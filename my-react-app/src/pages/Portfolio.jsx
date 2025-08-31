@@ -29,8 +29,8 @@ function Portfolio() {
       title: "Cinematic Wedding Film",
       role: "Director & Cinematographer",
       duration: "4:32",
-      thumbnail: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/20240516191907_IMG_9885.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "12.5K",
       likes: "1.2K"
     },
@@ -39,8 +39,8 @@ function Portfolio() {
       title: "Corporate Brand Story",
       role: "Creative Director",
       duration: "2:45",
-      thumbnail: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "8.3K",
       likes: "892"
     },
@@ -49,8 +49,8 @@ function Portfolio() {
       title: "Music Video Production",
       role: "Director of Photography",
       duration: "3:18",
-      thumbnail: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/20250412_164340.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "25.7K",
       likes: "2.1K"
     },
@@ -59,8 +59,8 @@ function Portfolio() {
       title: "Documentary Short",
       role: "Director & Editor",
       duration: "8:12",
-      thumbnail: "https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/IMG_3740.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "15.2K",
       likes: "1.8K"
     },
@@ -69,8 +69,8 @@ function Portfolio() {
       title: "Fashion Commercial",
       role: "Cinematographer",
       duration: "1:30",
-      thumbnail: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/20250412_164340.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "9.8K",
       likes: "756"
     },
@@ -79,8 +79,8 @@ function Portfolio() {
       title: "Travel Documentary",
       role: "Solo Filmmaker",
       duration: "6:45",
-      thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
+      embedUrl: "/assets/VID_20250531_093006_176.mp4",
       views: "32.1K",
       likes: "3.4K"
     }
@@ -91,7 +91,7 @@ function Portfolio() {
       id: 1,
       title: "Urban Portrait Series",
       category: "Portrait",
-      image: "https://images.unsplash.com/photo-1494790108755-2616c4e0b8e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20231111003208_IMG_2808.jpg",
       likes: "234",
       shares: "45"
     },
@@ -99,7 +99,7 @@ function Portfolio() {
       id: 2,
       title: "Golden Hour Landscape",
       category: "Landscape",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20240516191907_IMG_9885.jpg",
       likes: "456",
       shares: "78"
     },
@@ -107,7 +107,7 @@ function Portfolio() {
       id: 3,
       title: "Street Photography",
       category: "Street",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20250412_164340.jpg",
       likes: "189",
       shares: "23"
     },
@@ -115,7 +115,7 @@ function Portfolio() {
       id: 4,
       title: "Fashion Editorial",
       category: "Fashion",
-      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/IMG_1390.jpg",
       likes: "567",
       shares: "123"
     },
@@ -123,7 +123,7 @@ function Portfolio() {
       id: 5,
       title: "Architectural Details",
       category: "Architecture",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/IMG_3740.jpg",
       likes: "312",
       shares: "67"
     },
@@ -131,15 +131,15 @@ function Portfolio() {
       id: 6,
       title: "Nature Close-up",
       category: "Nature",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/IMG_4571 (1).jpg",
       likes: "445",
       shares: "89"
     },
     {
       id: 7,
-      title: "Concert Photography",
+      title: "Banaras Arti",
       category: "Event",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20240516191907_IMG_9885.jpg",
       likes: "678",
       shares: "145"
     },
@@ -147,7 +147,7 @@ function Portfolio() {
       id: 8,
       title: "Minimalist Composition",
       category: "Abstract",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/IMG20230409161909 (1).jpg",
       likes: "234",
       shares: "56"
     }
@@ -160,7 +160,7 @@ function Portfolio() {
       genre: "Orchestral",
       duration: "4:32",
       plays: "15.2K",
-      waveform: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      waveform: "/assets/20250412_164340.jpg"
     },
     {
       id: 2,
@@ -168,7 +168,7 @@ function Portfolio() {
       genre: "Electronic",
       duration: "3:18",
       plays: "22.7K",
-      waveform: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      waveform: "/assets/20231111003208_IMG_2808.jpg"
     },
     {
       id: 3,
@@ -176,7 +176,7 @@ function Portfolio() {
       genre: "Acoustic",
       duration: "5:45",
       plays: "8.9K",
-      waveform: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      waveform: "/assets/20240516191907_IMG_9885.jpg"
     },
     {
       id: 4,
@@ -184,7 +184,7 @@ function Portfolio() {
       genre: "Cinematic",
       duration: "6:12",
       plays: "31.5K",
-      waveform: "https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      waveform: "/assets/20231111003208_IMG_2808.jpg"
     }
   ];
 
@@ -331,10 +331,16 @@ function Portfolio() {
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
                         
                         {/* Play Button */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-xl">
-                            <Play className="w-8 h-8 text-white ml-1" />
-                          </div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                          {video.embedUrl.includes('.mp4') ? (
+                            <div className="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-xl">
+                              <Play className="w-8 h-8 text-white ml-1" />
+                            </div>
+                          ) : (
+                            <div className="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-xl">
+                              <Play className="w-8 h-8 text-white ml-1" />
+                            </div>
+                          )}
                         </div>
 
                         {/* Video Info Overlay */}

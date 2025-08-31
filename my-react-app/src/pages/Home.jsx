@@ -29,21 +29,21 @@ function App() {
       id: 1,
       title: "Cinematic Wedding Film",
       type: "Videography",
-      image: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20240516191907_IMG_9885.jpg",
       description: "A breathtaking wedding story captured with cinematic precision"
     },
     {
       id: 2,
       title: "Portrait Series",
       type: "Photography",
-      image: "/public/download (28).jpeg",
+      image: "/assets/20231111003208_IMG_2808.jpg",
       description: "Artistic portraits showcasing raw emotion and beauty"
     },
     {
       id: 3,
       title: "Ambient Soundscape",
       type: "Music",
-      image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/assets/20250412_164340.jpg",
       description: "Original composition for film and commercial projects"
     }
   ];
@@ -271,7 +271,7 @@ function App() {
                   {/* Main Image */}
                   <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transform translate-z-0">
                     <img
-                      src="/Chatgpt.jpeg"
+                      src="/assets/Chatgpt.jpeg"
                       alt="About"
                       className="w-full h-full object-cover"
                     />
@@ -333,7 +333,7 @@ function App() {
       </div>
       </section>
 
-      {/* Portfolio Showcase */}
+      {/* Featured Work Showcase */}
       <section id="portfolio" className="py-20 px-6 bg-primary-800/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -344,10 +344,10 @@ function App() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              My <span className="text-cyan-400">Portfolio</span>
+              Featured <span className="text-cyan-400">Work</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              Explore my creative journey through videography, photography, and music composition
+              Discover highlights from my creative portfolio
             </p>
           </motion.div>
 
@@ -384,20 +384,24 @@ function App() {
             >
               {activePortfolioTab === 'video' && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {[1, 2, 3, 4, 5, 6].map((item) => (
-                    <div key={item} className="group cursor-pointer">
+                  {[
+                    { title: "Cinematic Wedding Film", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
+                    { title: "Corporate Brand Story", role: "Creative Director", image: "/assets/20231111003208_IMG_2808.jpg", duration: "2:45" },
+                    { title: "Music Video Production", role: "Director of Photography", image: "/assets/20250412_164340.jpg", duration: "3:18" }
+                  ].map((video, index) => (
+                    <div key={index} className="group cursor-pointer" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="relative overflow-hidden rounded-xl bg-primary-700 aspect-video">
                         <img
-                          src={`https://images.unsplash.com/photo-${1570285974333 + item}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                          alt={`Video ${item}`}
+                          src={video.image}
+                          alt={video.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                           <Play className="w-12 h-12 text-white" />
                         </div>
                       </div>
-                      <h3 className="text-lg font-semibold mt-4">Cinematic Project {item}</h3>
-                      <p className="text-gray-400">Commercial • 2024</p>
+                      <h3 className="text-lg font-semibold mt-4">{video.title}</h3>
+                      <p className="text-gray-400">{video.role} • {video.duration}</p>
                     </div>
                   ))}
                 </div>
@@ -405,24 +409,32 @@ function App() {
 
               {activePortfolioTab === 'photo' && (
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                  {[
+                    { title: "Urban Portrait Series", category: "Portrait", image: "/assets/20231111003208_IMG_2808.jpg" },
+                    { title: "Golden Hour Landscape", category: "Landscape", image: "/assets/20240516191907_IMG_9885.jpg" },
+                    { title: "Street Photography", category: "Street", image: "/assets/20250412_164340.jpg" },
+                    { title: "Fashion Editorial", category: "Fashion", image: "/assets/IMG_1390.jpg" },
+                    { title: "Architectural Details", category: "Architecture", image: "/assets/IMG_3740.jpg" },
+                    { title: "Nature Close-up", category: "Nature", image: "/assets/IMG_4571 (1).jpg" }
+                  ].map((photo, index) => (
                     <motion.div
-                      key={item}
+                      key={index}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: item * 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="break-inside-avoid group cursor-pointer"
+                      onClick={() => window.open('/portfolio', '_blank')}
                     >
                       <div className="relative overflow-hidden rounded-xl">
                         <img
-                          src={`https://images.unsplash.com/photo-${1494790108755 + item * 100}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                          alt={`Photo ${item}`}
+                          src={photo.image}
+                          alt={photo.title}
                           className="w-full group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-4 left-4 text-white">
-                            <h3 className="font-semibold">Portrait Series {item}</h3>
-                            <p className="text-sm text-gray-300">Fine Art Photography</p>
+                            <h3 className="font-semibold">{photo.title}</h3>
+                            <p className="text-sm text-gray-300">{photo.category}</p>
                           </div>
                         </div>
                       </div>
@@ -434,15 +446,22 @@ function App() {
               {activePortfolioTab === 'music' && (
                 <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                   {[
-                    { title: "Cinematic Overture", duration: "4:32", genre: "Orchestral" },
-                    { title: "Urban Nights", duration: "3:18", genre: "Electronic" },
-                    { title: "Acoustic Dreams", duration: "5:45", genre: "Acoustic" },
-                    { title: "Epic Journey", duration: "6:12", genre: "Cinematic" }
+                    { title: "Cinematic Overture", duration: "4:32", genre: "Orchestral", image: "/assets/20250412_164340.jpg" },
+                    { title: "Urban Nights", duration: "3:18", genre: "Electronic", image: "/assets/20231111003208_IMG_2808.jpg" },
+                    { title: "Acoustic Dreams", duration: "5:45", genre: "Acoustic", image: "/assets/20240516191907_IMG_9885.jpg" },
+                    { title: "Epic Journey", duration: "6:12", genre: "Cinematic", image: "/assets/20231111003208_IMG_2808.jpg" }
                   ].map((track, index) => (
-                    <div key={index} className="glass p-6 rounded-xl group cursor-pointer hover:bg-white/10 transition-colors">
+                    <div key={index} className="glass p-6 rounded-xl group cursor-pointer hover:bg-white/10 transition-colors" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <Play className="w-6 h-6 text-white" />
+                        <div className="relative w-16 h-16 overflow-hidden rounded-lg group-hover:scale-110 transition-transform">
+                          <img
+                            src={track.image}
+                            alt={track.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
+                            <Play className="w-6 h-6 text-white" />
+                          </div>
                         </div>
                         <div className="flex-1">
                           <h3 className="font-semibold text-lg">{track.title}</h3>
@@ -455,6 +474,23 @@ function App() {
               )}
             </motion.div>
           </AnimatePresence>
+
+          {/* CTA to Full Portfolio */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/30 hover:scale-105 glow-cyan"
+            >
+              View Full Portfolio
+              <ExternalLink size={20} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -498,10 +534,10 @@ function App() {
                         <div className="text-teal-400 font-semibold">{project.type}</div>
                         <h3 className="text-3xl md:text-4xl font-serif font-bold">{project.title}</h3>
                         <p className="text-gray-300 text-lg">{project.description}</p>
-                        <button className="btn-primary">
+                        <Link to="/projects" className="btn-primary inline-flex items-center gap-2">
                           View Project
-                          <ExternalLink className="inline-block ml-2 w-4 h-4" />
-                        </button>
+                          <ExternalLink className="w-4 h-4" />
+                        </Link>
                       </div>
                     </div>
                   </div>

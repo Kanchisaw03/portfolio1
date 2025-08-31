@@ -27,8 +27,8 @@ function Projects() {
       year: "2024",
       client: "Sarah & Michael",
       duration: "4:32",
-      thumbnail: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      heroImage: "https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      thumbnail: "/assets/20240516191907_IMG_9885.jpg",
+      heroImage: "/assets/20240516191907_IMG_9885.jpg",
       overview: {
         goal: "Create an emotionally compelling wedding film that captures the authentic love story of Sarah and Michael",
         inspiration: "Inspired by classic cinema and the golden hour lighting of their vineyard venue",
@@ -39,7 +39,7 @@ function Projects() {
         equipment: "RED Dragon 6K, DJI Inspire 2, Zeiss Master Primes",
         approach: "Documentary-style shooting with cinematic framing and natural lighting"
       },
-      finalOutput: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      finalOutput: "/assets/VID_20250531_093006_176.mp4",
       testimonial: {
         text: "The final wedding film exceeded every expectation. It perfectly captured the essence of our special day with cinematic beauty that brings tears to our eyes every time we watch it.",
         author: "Sarah Johnson",
@@ -54,8 +54,8 @@ function Projects() {
       year: "2024",
       client: "Fashion Brand X",
       duration: "Campaign",
-      thumbnail: "https://images.unsplash.com/photo-1494790108755-2616c4e0b8e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      heroImage: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      thumbnail: "/assets/IMG_1390.jpg",
+      heroImage: "/assets/IMG_1390.jpg",
       overview: {
         goal: "Create a modern urban portrait series that showcases street fashion with architectural elements",
         inspiration: "Blade Runner aesthetics mixed with contemporary street culture",
@@ -81,8 +81,8 @@ function Projects() {
       year: "2024",
       client: "Film Production Co.",
       duration: "45:00",
-      thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      heroImage: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      thumbnail: "/assets/20250412_164340.jpg",
+      heroImage: "/assets/20250412_164340.jpg",
       overview: {
         goal: "Compose atmospheric music that enhances the emotional narrative of indie films",
         inspiration: "Hans Zimmer meets Ólafur Arnalds - orchestral meets electronic",
@@ -329,7 +329,16 @@ function Projects() {
                 viewport={{ once: true }}
                 className="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden shadow-2xl glow-teal"
               >
-                {project.finalOutput.includes('youtube') || project.finalOutput.includes('vimeo') ? (
+                {project.finalOutput.includes('.mp4') ? (
+                  <video
+                    src={project.finalOutput}
+                    controls
+                    className="w-full h-full object-cover"
+                    poster={project.heroImage}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : project.finalOutput.includes('youtube') || project.finalOutput.includes('vimeo') ? (
                   <iframe
                     src={project.finalOutput}
                     className="w-full h-full"
