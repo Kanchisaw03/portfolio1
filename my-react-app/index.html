@@ -4,10 +4,42 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/main.jsx" as="script">
+
+    <!-- Font preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Portfolio - Capturing Stories Through Lens & Sound</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Lakshya Singh Tomar - Cinematographer, Photographer & Music Producer</title>
+    <meta name="description" content="Professional cinematographer, photographer, and music producer based in India. Creating cinematic stories through lens and sound for brands and creative projects worldwide.">
+    <meta name="keywords" content="cinematographer, photographer, music producer, videographer, film director, Lakshya Singh Tomar, India, creative storytelling">
+    <meta name="author" content="Lakshya Singh Tomar">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Lakshya Singh Tomar - Cinematographer & Photographer">
+    <meta property="og:description" content="Professional cinematographer, photographer, and music producer creating cinematic stories through lens and sound.">
+    <meta property="og:image" content="/assets/Chatgpt.jpeg">
+    <meta property="og:url" content="https://lakshyasinghtomargwl.com">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lakshya Singh Tomar - Cinematographer & Photographer">
+    <meta name="twitter:description" content="Professional cinematographer, photographer, and music producer creating cinematic stories through lens and sound.">
+    <meta name="twitter:image" content="/assets/Chatgpt.jpeg">
+
+    <!-- Performance hints -->
+    <meta name="theme-color" content="#0a0f1c">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <div id="root"></div>

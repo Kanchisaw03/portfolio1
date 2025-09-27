@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Camera, 
-  Video, 
-  Music, 
-  Play, 
+import {
+  Camera,
+  Video,
+  Music,
+  Play,
   ExternalLink,
   Eye,
   Heart,
@@ -16,6 +16,7 @@ import {
   Quote,
   Star
 } from 'lucide-react';
+import OptimizedVideo from '../components/OptimizedVideo.jsx';
 
 function Portfolio() {
   const [activeTab, setActiveTab] = useState('videography');
@@ -333,9 +334,13 @@ function Portfolio() {
                         {/* Play Button */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                           {video.embedUrl.includes('.mp4') ? (
-                            <div className="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-xl">
-                              <Play className="w-8 h-8 text-white ml-1" />
-                            </div>
+                            <OptimizedVideo
+                              src={video.embedUrl}
+                              className="w-full h-full"
+                              controls={false}
+                              autoPlay={false}
+                              muted={true}
+                            />
                           ) : (
                             <div className="w-20 h-20 bg-teal-500 rounded-full flex items-center justify-center shadow-xl">
                               <Play className="w-8 h-8 text-white ml-1" />
@@ -543,150 +548,95 @@ function Portfolio() {
         )}
       </AnimatePresence>
 
-      {/* Philosophy & Testimonials Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        {/* Cinematic Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
-        <div className="absolute inset-0 bg-gradient-radial from-cyan-500/10 via-transparent to-teal-500/5"></div>
-        
-        {/* Floating Particles */}
-        <div className="absolute top-32 left-20 w-2 h-2 bg-teal-400 rounded-full animate-float opacity-60"></div>
-        <div className="absolute top-40 right-32 w-1 h-1 bg-cyan-400 rounded-full animate-float opacity-40" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-40 left-32 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-float opacity-50" style={{ animationDelay: '2s' }}></div>
-        
+      {/* Beyond the Portfolio Section */}
+      <section className="relative py-32 px-6 overflow-hidden" id="beyond-portfolio">
+        {/* Soft spotlight background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800"></div>
+        <div className="absolute inset-0 bg-gradient-radial from-cyan-500/6 via-transparent to-teal-500/4"></div>
+
+        {/* Subtle stardust background */}
+        <div className="absolute top-20 left-20 w-3 h-3 bg-cyan-400/20 rounded-full blur-sm animate-pulse"></div>
+        <div className="absolute top-40 right-40 w-2 h-2 bg-teal-400/25 rounded-full blur-sm animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute bottom-32 left-40 w-1.5 h-1.5 bg-emerald-400/20 rounded-full blur-sm animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-20 right-20 w-2.5 h-2.5 bg-cyan-400/15 rounded-full blur-sm animate-pulse" style={{ animationDelay: '2.2s' }}></div>
+
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8 text-glow">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-glow">
               Beyond the <span className="bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">Portfolio</span>
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full mx-auto mb-8"></div>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
               Art isn't just what you see or hear — it's what you feel. This is the philosophy behind every frame, shot, and note.
             </p>
           </motion.div>
 
-          {/* Philosophy Blocks */}
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
-            {[
-              {
-                title: "Impact",
-                icon: "🌍",
-                description: "How creativity connects across cultures & audiences",
-                details: "Every piece we create serves as a bridge, connecting hearts and minds across different worlds, cultures, and experiences."
-              },
-              {
-                title: "Craft",
-                icon: "🎨",
-                description: "The balance of technical mastery and raw emotion",
-                details: "Technical precision meets unbridled creativity. We blend cutting-edge techniques with genuine human emotion to create art that resonates."
-              },
-              {
-                title: "Collaboration",
-                icon: "🤝",
-                description: "Working closely with clients to bring visions to life",
-                details: "Your vision becomes our mission. Through deep collaboration and understanding, we transform ideas into compelling visual narratives."
-              }
-            ].map((block, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="relative glass p-8 rounded-3xl h-full transition-all duration-500 hover:bg-white/5 hover:scale-105">
-                  {/* Gradient Line */}
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full mb-8"></div>
-                  
-                  {/* Icon */}
-                  <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                    {block.icon}
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-2xl font-serif font-bold text-white mb-4">{block.title}</h3>
-                  <p className="text-cyan-400 font-medium mb-4">{block.description}</p>
-                  <p className="text-gray-300 leading-relaxed">{block.details}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
           {/* Testimonials Carousel */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative mb-20"
           >
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-500/5 via-cyan-500/10 to-teal-500/5 rounded-3xl blur-xl"></div>
-            
-            <div className="relative glass p-12 rounded-3xl">
+            {/* Soft glow background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-500/3 via-cyan-500/5 to-teal-500/3 rounded-3xl blur-xl"></div>
+
+            <div className="relative glass p-8 md:p-12 rounded-3xl">
               <div className="text-center mb-12">
-                <h3 className="text-3xl font-serif font-bold text-white mb-4">What Clients Say</h3>
-                <div className="w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full mx-auto"></div>
+                <h3 className="text-2xl md:text-3xl font-serif font-bold text-white mb-4">Client Testimonials</h3>
+                <div className="w-16 h-0.5 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full mx-auto mb-3"></div>
+                <p className="text-sm text-teal-300 font-medium">Real testimonials from Lakshya's portfolio</p>
               </div>
 
               {/* Testimonials Grid */}
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                 {[
                   {
-                    text: "Working with this team was cinematic perfection. Every frame told our story with breathtaking beauty and emotional depth.",
-                    author: "Sarah Chen",
-                    role: "Creative Director, Luxe Brands",
-                    rating: 5
+                    quote: "Lakshya brought creativity and precision to our product photography and videography. His attention to detail and professional approach added real value to our visual campaigns.",
+                    client: "Diorama Designs",
+                    role: "Client"
                   },
                   {
-                    text: "The attention to detail and artistic vision exceeded every expectation. Truly masters of their craft in every sense.",
-                    author: "Michael Rodriguez",
-                    role: "Founder, Artisan Studios",
-                    rating: 5
-                  },
-                  {
-                    text: "They didn't just capture our event—they created a visual symphony that brings tears to our eyes every time we watch it.",
-                    author: "Elena Kowalski",
-                    role: "Event Coordinator",
-                    rating: 5
+                    quote: "Working with Lakshya was a smooth and inspiring process. He has a strong eye for cinematic storytelling and understands how to balance artistry with brand needs.",
+                    client: "Itokri",
+                    role: "Client"
                   }
                 ].map((testimonial, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="text-center group"
+                    className="group"
                   >
-                    <div className="relative p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-105">
-                      {/* Quote Icon */}
-                      <Quote className="w-8 h-8 text-teal-400 mx-auto mb-4 opacity-60" />
-                      
-                      {/* Stars */}
-                      <div className="flex justify-center mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
-                        ))}
+                    <div className="relative p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-cyan-500/5 backdrop-blur-sm border border-teal-400/20 transition-all duration-300 hover:scale-105 h-full">
+                      {/* Authenticity indicator */}
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-teal-400 to-cyan-400 rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-xs font-bold text-white">✓</span>
                       </div>
-                      
-                      {/* Quote */}
-                      <blockquote className="text-gray-300 italic mb-6 leading-relaxed">
-                        "{testimonial.text}"
+
+                      {/* Quote icon */}
+                      <Quote className="w-6 h-6 mb-4 text-teal-300" />
+
+                      {/* Quote text */}
+                      <blockquote className="italic mb-6 leading-relaxed text-gray-200 text-sm md:text-base">
+                        "{testimonial.quote}"
                       </blockquote>
-                      
-                      {/* Author */}
-                      <div className="border-t border-white/10 pt-4">
-                        <p className="font-semibold text-white">{testimonial.author}</p>
-                        <p className="text-sm text-teal-400">{testimonial.role}</p>
+
+                      {/* Client info */}
+                      <div className="border-t border-teal-400/30 pt-4">
+                        <p className="font-semibold text-white text-sm md:text-base">{testimonial.client}</p>
+                        <p className="text-teal-300 text-xs md:text-sm">
+                          {testimonial.role}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -695,23 +645,29 @@ function Portfolio() {
             </div>
           </motion.div>
 
-          {/* Final CTA */}
+          {/* Bottom CTA Strip */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-center mt-20"
+            className="flex flex-col lg:flex-row items-center justify-between gap-8 py-8 px-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
           >
-            <p className="text-2xl font-serif italic text-gray-300 mb-8">
-              "Your story deserves to be told beautifully."
-            </p>
-            <Link 
-              to="/#contact"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-lg rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/30 hover:scale-105 glow-cyan"
+            {/* Left side quote */}
+            <div className="text-center lg:text-left">
+              <p className="text-lg md:text-xl font-serif italic text-gray-300">
+                "See the world cinematically."
+              </p>
+            </div>
+
+            {/* Right side CTA */}
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+              aria-label="Explore Full Work - View complete portfolio"
             >
-              Start Your Story
-              <ExternalLink size={20} />
+              Explore Full Work
+              <ExternalLink size={18} />
             </Link>
           </motion.div>
         </div>

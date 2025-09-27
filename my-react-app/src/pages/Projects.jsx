@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  ArrowLeft, 
-  Calendar, 
-  User, 
-  Play, 
-  ExternalLink, 
-  Camera, 
-  Video, 
+import {
+  ArrowLeft,
+  Calendar,
+  User,
+  Play,
+  ExternalLink,
+  Camera,
+  Video,
   Music,
   Clock,
   Star,
   Quote
 } from 'lucide-react';
+import OptimizedVideo from '../components/OptimizedVideo.jsx';
 
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -330,14 +331,11 @@ function Projects() {
                 className="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden shadow-2xl glow-teal"
               >
                 {project.finalOutput.includes('.mp4') ? (
-                  <video
+                  <OptimizedVideo
                     src={project.finalOutput}
-                    controls
-                    className="w-full h-full object-cover"
                     poster={project.heroImage}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
+                    className="w-full h-full"
+                  />
                 ) : project.finalOutput.includes('youtube') || project.finalOutput.includes('vimeo') ? (
                   <iframe
                     src={project.finalOutput}
@@ -502,103 +500,128 @@ function Projects() {
         </div>
       </section>
 
-      {/* Premium Services Section */}
-      <section className="relative py-32 px-6 overflow-hidden">
+      {/* Our Creative Services Section */}
+      <section className="relative py-32 px-6 overflow-hidden" id="creative-services">
+        {/* Glowing divider above */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-teal-400/50 to-transparent"></div>
+
         {/* Cinematic Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
-        <div className="absolute inset-0 bg-gradient-radial from-teal-500/10 via-transparent to-cyan-500/5"></div>
-        
-        {/* Floating Glow Orbs */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
-        
+        <div className="absolute inset-0 bg-gradient-radial from-teal-500/8 via-transparent to-cyan-500/3"></div>
+
+        {/* Subtle stardust particles */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-teal-400/30 rounded-full animate-pulse"></div>
+        <div className="absolute top-40 right-32 w-1 h-1 bg-cyan-400/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-40 left-32 w-1.5 h-1.5 bg-emerald-400/30 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+
         <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Section Intro */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8 text-glow">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 text-glow">
               Our Creative <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Services</span>
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full mx-auto mb-8"></div>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
               Every story deserves the right lens, frame, and sound. Here's how we can help bring yours to life.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
+          {/* Service Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-20">
             {[
               {
                 icon: Video,
                 title: "Video Production",
-                description: "Storyboarding, Filming, Editing, Post-production",
-                details: "From concept to completion, we craft cinematic stories that captivate and inspire.",
+                summary: "Storyboarding · Filming · Editing · Post-production",
+                bullets: ["Storyboarding", "Filming", "Editing", "Post-production"],
                 color: "teal"
               },
               {
                 icon: Camera,
                 title: "Photography",
-                description: "Commercial, Event, Portrait, Artistic Shoots",
-                details: "Capturing moments that matter with artistic precision and emotional depth.",
+                summary: "Commercial · Event · Portrait · Artistic Shoots",
+                bullets: ["Commercial", "Event", "Portrait", "Artistic Shoots"],
                 color: "cyan"
               },
               {
                 icon: Music,
                 title: "Music & Sound Design",
-                description: "Original Scoring, Tracks, Audio Mixing",
-                details: "Creating sonic landscapes that elevate your visual narrative to new heights.",
+                summary: "Original Scoring · Tracks · Audio Mixing · Sound Design",
+                bullets: ["Original Scoring", "Tracks", "Audio Mixing", "Sound Design"],
                 color: "emerald"
               },
               {
                 icon: Star,
                 title: "Creative Consulting",
-                description: "Helping brands define their visual & sonic identity",
-                details: "Strategic creative direction to ensure your brand's story resonates authentically.",
+                summary: "Brand Identity · Visual Direction · Campaign Strategy",
+                bullets: ["Brand Identity", "Visual Direction", "Campaign Strategy"],
                 color: "amber"
               }
             ].map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="relative glass p-8 rounded-3xl h-full transition-all duration-500 hover:bg-white/10 hover:scale-105">
-                  {/* Glow Effect */}
-                  <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                    service.color === 'teal' ? 'bg-gradient-to-br from-teal-500/10 to-cyan-500/5' :
-                    service.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/10 to-teal-500/5' :
-                    service.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500/10 to-teal-500/5' :
-                    'bg-gradient-to-br from-amber-500/10 to-teal-500/5'
+                <div className="relative glass p-8 rounded-2xl h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-teal-500/20">
+                  {/* Subtle glow ring on hover */}
+                  <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                    service.color === 'teal' ? 'bg-gradient-to-br from-teal-500/5 to-cyan-500/3' :
+                    service.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/5 to-teal-500/3' :
+                    service.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500/5 to-teal-500/3' :
+                    'bg-gradient-to-br from-amber-500/5 to-teal-500/3'
                   }`}></div>
-                  
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 ${
-                      service.color === 'teal' ? 'bg-teal-500/20 text-teal-400' :
-                      service.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-400' :
-                      service.color === 'emerald' ? 'bg-emerald-500/20 text-emerald-400' :
-                      'bg-amber-500/20 text-amber-400'
-                    }`}>
-                      <service.icon size={28} />
-                    </div>
+
+                  <div className="relative z-10 flex gap-6">
+                    {/* Icon Circle */}
+                    <motion.div
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
+                      className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:shadow-lg ${
+                        service.color === 'teal' ? 'bg-gradient-to-br from-teal-500/20 to-teal-600/30 text-teal-400 group-hover:shadow-teal-500/30' :
+                        service.color === 'cyan' ? 'bg-gradient-to-br from-cyan-500/20 to-cyan-600/30 text-cyan-400 group-hover:shadow-cyan-500/30' :
+                        service.color === 'emerald' ? 'bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 text-emerald-400 group-hover:shadow-emerald-500/30' :
+                        'bg-gradient-to-br from-amber-500/20 to-amber-600/30 text-amber-400 group-hover:shadow-amber-500/30'
+                      }`}
+                    >
+                      <service.icon size={24} />
+                    </motion.div>
 
                     {/* Content */}
-                    <h3 className="text-2xl font-serif font-bold text-white mb-3">{service.title}</h3>
-                    <p className={`font-medium mb-4 ${
-                      service.color === 'teal' ? 'text-teal-400' :
-                      service.color === 'cyan' ? 'text-cyan-400' :
-                      service.color === 'emerald' ? 'text-emerald-400' :
-                      'text-amber-400'
-                    }`}>
-                      {service.description}
-                    </p>
-                    <p className="text-gray-300 leading-relaxed">{service.details}</p>
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2">{service.title}</h3>
+                      <p className={`text-sm md:text-base mb-4 font-medium ${
+                        service.color === 'teal' ? 'text-teal-400' :
+                        service.color === 'cyan' ? 'text-cyan-400' :
+                        service.color === 'emerald' ? 'text-emerald-400' :
+                        'text-amber-400'
+                      }`}>
+                        {service.summary}
+                      </p>
+
+                      {/* Micro-bullets */}
+                      <div className="flex flex-wrap gap-3">
+                        {service.bullets.map((bullet, bulletIndex) => (
+                          <div key={bulletIndex} className="flex items-center gap-1.5 text-xs text-gray-400">
+                            <div className={`w-1 h-1 rounded-full ${
+                              service.color === 'teal' ? 'bg-teal-400' :
+                              service.color === 'cyan' ? 'bg-cyan-400' :
+                              service.color === 'emerald' ? 'bg-emerald-400' :
+                              'bg-amber-400'
+                            }`}></div>
+                            <span>{bullet}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -607,20 +630,40 @@ function Projects() {
 
           {/* CTA Section */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
             className="text-center"
           >
-            <Link 
+            <Link
               to="/#contact"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold text-lg rounded-2xl transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/30 hover:scale-105 glow-teal"
+              className="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold text-lg rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-teal-500/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+              aria-label="Work With Me - Go to contact section"
             >
               Work With Me
               <ExternalLink size={20} />
             </Link>
-            <p className="text-gray-400 mt-6 text-lg">Ready to bring your vision to life?</p>
+
+            {/* Trust indicators - Real client feedback */}
+            <div className="mt-12 pt-8 border-t border-white/10">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-sm text-gray-400">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 rounded-full flex items-center justify-center">
+                    <Quote size={14} className="text-teal-300" />
+                  </div>
+                  <span>"Creativity and precision"</span>
+                </div>
+                <div className="hidden md:block w-px h-4 bg-white/20"></div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-cyan-500/20 to-teal-500/20 rounded-full flex items-center justify-center">
+                    <Star size={14} className="text-amber-400" />
+                  </div>
+                  <span>"Smooth and inspiring process"</span>
+                </div>
+              </div>
+              <p className="text-xs text-teal-400 mt-4 text-center">Direct quotes from client testimonials</p>
+            </div>
           </motion.div>
         </div>
       </section>

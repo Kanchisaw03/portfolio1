@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Camera, 
-  Video, 
-  Music, 
-  Instagram, 
-  Youtube, 
+import {
+  Camera,
+  Video,
+  Music,
+  Instagram,
+  Youtube,
   Mail,
   Phone,
   MapPin,
@@ -18,6 +18,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
+import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function App() {
   const [activePortfolioTab, setActivePortfolioTab] = useState('video');
@@ -48,24 +49,18 @@ function App() {
     }
   ];
 
-  // Testimonials data
+  // Testimonials data - Real clients from Lakshya's portfolio PDF
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Bride",
-      text: "Working with Alex was an absolute dream – cinematic perfection that captured every precious moment of our special day.",
+      name: "Diorama Designs",
+      role: "Client",
+      text: "Lakshya brought creativity and precision to our product photography and videography. His attention to detail and professional approach added real value to our visual campaigns.",
       rating: 5
     },
     {
-      name: "Marcus Chen",
-      role: "Creative Director",
-      text: "The attention to detail and artistic vision exceeded all expectations. Truly a master of their craft.",
-      rating: 5
-    },
-    {
-      name: "Elena Rodriguez",
-      role: "Music Producer",
-      text: "The musical compositions brought our project to life. Exceptional talent and professionalism.",
+      name: "Itokri",
+      role: "Client",
+      text: "Working with Lakshya was a smooth and inspiring process. He has a strong eye for cinematic storytelling and understands how to balance artistry with brand needs.",
       rating: 5
     }
   ];
@@ -216,9 +211,9 @@ function App() {
             transition={{ duration: 1 }}
             className="text-5xl md:text-7xl font-serif font-bold mb-6 text-glow"
           >
-            Capturing Stories Through
+            See the World Cinematically
             <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
-              {' '}Lens & Sound
+              {' '}Through My Lens
             </span>
           </motion.h1>
 
@@ -228,7 +223,7 @@ function App() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 font-light"
           >
-            Videographer • Photographer • Musician
+             Photographer • Cinematographer • Editor
           </motion.p>
 
           <motion.div
@@ -270,11 +265,11 @@ function App() {
                 <div className="relative w-full h-full transform-style-preserve-3d transition-transform duration-700 group-hover:rotate-y-12 group-hover:rotate-x-6">
                   {/* Main Image */}
                   <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transform translate-z-0">
-                    <img
-                      src="/assets/Chatgpt.jpeg"
-                      alt="About"
-                      className="w-full h-full object-cover"
-                    />
+                  <OptimizedImage
+                    src="/assets/Chatgpt.jpeg"
+                    alt="Lakshya - Cinematographer, Photographer, Editor"
+                    className="w-full h-full"
+                  />
                     <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent"></div>
                   </div>
                   
@@ -302,18 +297,16 @@ function App() {
             >
               <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full"></div>
               <h2 className="text-4xl md:text-5xl font-serif font-bold">
-                Bringing Stories to Life Through
-                <span className="text-teal-400"> Art</span>
+                About 
+                <span className="text-teal-400"> Me</span>
               </h2>
               <p className="text-gray-300 text-lg leading-relaxed">
-                With over 8 years of experience in visual storytelling and music composition, 
-                I specialize in creating immersive experiences that capture the essence of every moment. 
-                My work spans across cinematic videography, artistic photography, and original music composition.
+                 I’m Lakshya, a Cinematographer, Photographer and Editor. My journey began with travel
+                  photography, capturing landscapes, cultures and people across India. Over time I
+                  discovered my passion for filmmaking, where I could shape stories through framing,
+                  movement and light. Today my work combines technical skill with artistic vision, and I also take on commercial projects for brands and campaigns. I focus on creating visuals that are not only visually striking but also emotionally engaging. From photography and videography to editing, I approach every project with the same goal: to deliver cinematic stories that stay with the viewer.
               </p>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Every project is approached with a unique creative vision, combining technical expertise 
-                with artistic passion to deliver content that resonates deeply with audiences.
-              </p>
+              
               <div className="grid grid-cols-3 gap-6 pt-6">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-teal-400">500+</div>
@@ -391,10 +384,10 @@ function App() {
                   ].map((video, index) => (
                     <div key={index} className="group cursor-pointer" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="relative overflow-hidden rounded-xl bg-primary-700 aspect-video">
-                        <img
+                        <OptimizedImage
                           src={video.image}
-                          alt={video.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          alt={`${video.title} - ${video.role}`}
+                          className="w-full h-full group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                           <Play className="w-12 h-12 text-white" />
@@ -426,9 +419,9 @@ function App() {
                       onClick={() => window.open('/portfolio', '_blank')}
                     >
                       <div className="relative overflow-hidden rounded-xl">
-                        <img
+                        <OptimizedImage
                           src={photo.image}
-                          alt={photo.title}
+                          alt={`${photo.title} - ${photo.category}`}
                           className="w-full group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -454,10 +447,10 @@ function App() {
                     <div key={index} className="glass p-6 rounded-xl group cursor-pointer hover:bg-white/10 transition-colors" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="flex items-center gap-4">
                         <div className="relative w-16 h-16 overflow-hidden rounded-lg group-hover:scale-110 transition-transform">
-                          <img
+                          <OptimizedImage
                             src={track.image}
-                            alt={track.title}
-                            className="w-full h-full object-cover"
+                            alt={`${track.title} album art`}
+                            className="w-full h-full"
                           />
                           <div className="absolute inset-0 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
                             <Play className="w-6 h-6 text-white" />
@@ -522,10 +515,10 @@ function App() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                       <div className={`order-2 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                         <div className="relative group">
-                          <img
+                          <OptimizedImage
                             src={project.image}
-                            alt={project.title}
-                            className="w-full h-96 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                            alt={`${project.title} - ${project.type}`}
+                            className="w-full h-96 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/30 to-cyan-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
@@ -592,10 +585,11 @@ function App() {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               What Clients <span className="text-cyan-400">Say</span>
             </h2>
-            <p className="text-gray-300 text-lg">Testimonials from satisfied clients</p>
+            <p className="text-gray-300 text-lg">Real testimonials from Lakshya's client collaborations</p>
+            <div className="w-24 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full mx-auto mt-4"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -603,17 +597,28 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="glass p-8 rounded-2xl glow-cyan hover:glow-teal transition-all duration-300"
+                className="glass p-8 rounded-2xl glow-teal hover:glow-cyan bg-gradient-to-br from-teal-500/10 to-cyan-500/5 transition-all duration-300 hover:scale-105 relative"
               >
+                {/* Authenticity badge for real clients */}
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-gradient-to-br from-teal-400 to-cyan-400 rounded-full flex items-center justify-center shadow-lg border-2 border-gray-900">
+                  <span className="text-sm font-bold text-white">✓</span>
+                </div>
+
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-gray-300 mb-6 italic">"{testimonial.text}"</p>
+
+                <p className="mb-6 italic leading-relaxed text-gray-200">
+                  "{testimonial.text}"
+                </p>
+
                 <div>
-                  <div className="font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-teal-400 text-sm">{testimonial.role}</div>
+                  <div className="font-semibold text-white text-lg">{testimonial.name}</div>
+                  <div className="text-sm mt-1 text-teal-300">
+                    {testimonial.role}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -632,7 +637,7 @@ function App() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Let's Create <span className="text-teal-400">Together</span>
+              Let's Create <span className="text-teal-400">Something Together</span>
             </h2>
             <p className="text-gray-300 text-lg">Ready to bring your vision to life? Get in touch!</p>
           </motion.div>
@@ -697,7 +702,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Email</h3>
-                  <p className="text-gray-300">hello@portfolio.com</p>
+                  <p className="text-gray-300">lakshyasinghtomargwl@gmail.com</p>
                 </div>
               </div>
 
@@ -707,7 +712,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-300">+1 (555) 123-4567</p>
+                  <p className="text-gray-300">+91 79547 96666</p>
                 </div>
               </div>
 
@@ -717,7 +722,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Location</h3>
-                  <p className="text-gray-300">Los Angeles, CA</p>
+                  <p className="text-gray-300">India</p>
                 </div>
               </div>
 
@@ -725,9 +730,9 @@ function App() {
                 <h3 className="font-semibold mb-4">Follow My Work</h3>
                 <div className="flex gap-4">
                   {[
-                    { icon: Instagram, href: '#', color: 'hover:text-pink-500' },
-                    { icon: Youtube, href: '#', color: 'hover:text-red-500' },
-                    { icon: Mail, href: '#', color: 'hover:text-teal-400' }
+                    { icon: Instagram, href: 'https://www.instagram.com/ur_traveller_dude?igsh=OHN6dDRsZWN0OTZ2', color: 'hover:text-pink-500' },
+                    { icon: Youtube, href: 'http://www.youtube.com/@yehmoments', color: 'hover:text-red-500' },
+                    { icon: Mail, href: 'mailto:lakshyasinghtomargwl@gmail.com', color: 'hover:text-teal-400' }
                   ].map((social, index) => (
                     <a
                       key={index}
@@ -753,13 +758,19 @@ function App() {
               © 2024 Portfolio. All rights reserved. Crafted with passion for visual storytelling.
             </div>
             <div className="flex gap-4">
-              {[Instagram, Youtube, Mail].map((Icon, index) => (
+              {[
+                { icon: Instagram, href: 'https://www.instagram.com/ur_traveller_dude?igsh=OHN6dDRsZWN0OTZ2' },
+                { icon: Youtube, href: 'http://www.youtube.com/@yehmoments' },
+                { icon: Mail, href: 'mailto:lakshyasinghtomargwl@gmail.com' }
+              ].map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.href}
                   className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
+                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 >
-                  <Icon className="w-5 h-5" />
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
