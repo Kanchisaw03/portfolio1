@@ -262,7 +262,7 @@ function App() {
                   {/* Main Image */}
                   <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transform translate-z-0">
                   <OptimizedImage
-                    src="/assets/Chatgpt.jpeg"
+                    src="/assets/photo.jpg"
                     alt="Lakshya - Cinematographer, Photographer, Editor"
                     className="w-full h-full"
                     />
