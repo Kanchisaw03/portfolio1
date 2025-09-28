@@ -9,7 +9,6 @@ import {
   ExternalLink,
   Camera,
   Video,
-  Music,
   Clock,
   Star,
   Quote
@@ -22,82 +21,82 @@ function Projects() {
   const projects = [
     {
       id: 1,
-      title: "Cinematic Wedding Story",
+      title: "Banaras Arti glimpses",
       category: "Videography",
       role: "Director & Cinematographer",
       year: "2024",
-      client: "Sarah & Michael",
+      client: "Spiritual Documentary",
       duration: "4:32",
       thumbnail: "/assets/20240516191907_IMG_9885.jpg",
       heroImage: "/assets/20240516191907_IMG_9885.jpg",
       overview: {
-        goal: "Create an emotionally compelling wedding film that captures the authentic love story of Sarah and Michael",
-        inspiration: "Inspired by classic cinema and the golden hour lighting of their vineyard venue",
-        storytelling: "Focused on intimate moments and genuine emotions rather than traditional wedding videography"
+        goal: "Capture the divine essence of Banaras Aarti with cinematic storytelling that conveys spiritual depth",
+        inspiration: "Inspired by the sacred rituals and mystical atmosphere of the Ganges ghats",
+        storytelling: "Focused on the spiritual journey and cultural significance of this ancient tradition"
       },
       process: {
-        timeline: "6 months pre-production, 2-day shoot, 4 weeks post-production",
-        equipment: "RED Dragon 6K, DJI Inspire 2, Zeiss Master Primes",
-        approach: "Documentary-style shooting with cinematic framing and natural lighting"
+        timeline: "2 weeks pre-production, 3-day shoot capturing multiple arti sessions, 2 weeks post-production",
+        equipment: "Canon EOS R5, DJI Mavic Pro, Zeiss Loxia lenses for cinematic depth",
+        approach: "Respectful documentation respecting the sacred nature while capturing cinematic beauty"
       },
-      finalOutput: "/assets/VID_20250531_093006_176.mp4",
+      finalOutput: "https://www.youtube.com/embed/CMYXxja7T4c?si=t6G5GYRNNsESrHkf",
       testimonial: {
-        text: "The final wedding film exceeded every expectation. It perfectly captured the essence of our special day with cinematic beauty that brings tears to our eyes every time we watch it.",
-        author: "Sarah Johnson",
+        text: "This film beautifully captured the divine essence of Banaras Aarti. The cinematography conveyed the spiritual depth and cultural significance in a way that touched our souls.",
+        author: "Priya Sharma",
         rating: 5
       }
     },
     {
       id: 2,
-      title: "Urban Portrait Series",
-      category: "Photography",
-      role: "Photographer & Creative Director",
+      title: "Delhi Travel Story",
+      category: "Videography",
+      role: "Creative Director",
       year: "2024",
-      client: "Fashion Brand X",
-      duration: "Campaign",
-      thumbnail: "/assets/IMG_1390.jpg",
-      heroImage: "/assets/IMG_1390.jpg",
+      client: "Travel Documentary",
+      duration: "2:45",
+      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
+      heroImage: "/assets/20231111003208_IMG_2808.jpg",
       overview: {
-        goal: "Create a modern urban portrait series that showcases street fashion with architectural elements",
-        inspiration: "Blade Runner aesthetics mixed with contemporary street culture",
-        storytelling: "Each portrait tells a story of urban life and personal expression"
+        goal: "Create a visual journey through Delhi's bustling streets and vibrant culture",
+        inspiration: "Inspired by the chaotic beauty and rich history of India's capital city",
+        storytelling: "Capturing the essence of urban life, from ancient monuments to modern street culture"
       },
       process: {
-        timeline: "3 months concept to delivery",
-        equipment: "Canon R5, 85mm f/1.4, Urban lighting setups",
-        approach: "Golden hour and blue hour shooting in iconic city locations"
+        timeline: "1 month pre-production, 5-day intensive shoot across Delhi, 3 weeks post-production",
+        equipment: "Sony A7S III, DJI Ronin-S gimbal, Sigma Art lenses for cinematic quality",
+        approach: "Documentary-style exploration balancing wide establishing shots with intimate cultural moments"
       },
-      finalOutput: "gallery",
+      finalOutput: "https://www.youtube.com/embed/wQODkCMJePs",
       testimonial: {
-        text: "These portraits redefined our brand image. The urban aesthetic perfectly captured our target demographic.",
-        author: "Marcus Chen",
+        text: "This Delhi travel story perfectly captured the soul of our city. The cinematography brought alive the vibrant culture and rich heritage in a way that moved our entire team.",
+        author: "Rajesh Kumar",
         rating: 5
       }
     },
     {
       id: 3,
-      title: "Ambient Soundscapes",
-      category: "Music",
-      role: "Composer & Sound Designer",
+      title: "Moments of Kedarnath",
+      category: "Videography",
+      role: "Director & Editor",
       year: "2024",
-      client: "Film Production Co.",
-      duration: "45:00",
-      thumbnail: "/assets/20250412_164340.jpg",
-      heroImage: "/assets/20250412_164340.jpg",
+      client: "Spiritual Journey Documentary",
+      duration: "8:12",
+      thumbnail: "/assets/Screenshot 2025-09-28 200051.jpg",
+      heroImage: "/assets/Screenshot 2025-09-28 200051.jpg",
       overview: {
-        goal: "Compose atmospheric music that enhances the emotional narrative of indie films",
-        inspiration: "Hans Zimmer meets Ólafur Arnalds - orchestral meets electronic",
-        storytelling: "Music as invisible storytelling that guides audience emotions"
+        goal: "Document sacred moments at Kedarnath temple, one of India's most revered pilgrimage sites",
+        inspiration: "Inspired by the spiritual atmosphere and breathtaking Himalayan landscapes",
+        storytelling: "Capturing the divine connection between devotees and the sacred mountain temple"
       },
       process: {
-        timeline: "4 months composition and production",
-        equipment: "Logic Pro X, Kontakt Libraries, Live Orchestra Recording",
-        approach: "Iterative composition with director feedback at each milestone"
+        timeline: "3 weeks preparation, 7-day trek and shooting in challenging conditions, 4 weeks editing",
+        equipment: "Canon EOS R5, DJI Mavic 3 Pro for aerials, weather-sealed gear for high altitude",
+        approach: "Respectful documentation of spiritual rituals combined with stunning landscape cinematography"
       },
-      finalOutput: "audio",
+      finalOutput: "https://www.youtube.com/embed/iHWURVLVMiY",
       testimonial: {
-        text: "The soundtrack elevated our film to another level. It's impossible to imagine the movie without this music.",
-        author: "Elena Rodriguez",
+        text: "The footage of Kedarnath captured the divine essence of this sacred place. Every frame conveyed the spiritual depth and natural majesty that pilgrims experience.",
+        author: "Dr. Anita Verma",
         rating: 5
       }
     }
@@ -547,13 +546,6 @@ function Projects() {
                 summary: "Commercial · Event · Portrait · Artistic Shoots",
                 bullets: ["Commercial", "Event", "Portrait", "Artistic Shoots"],
                 color: "cyan"
-              },
-              {
-                icon: Music,
-                title: "Music & Sound Design",
-                summary: "Original Scoring · Tracks · Audio Mixing · Sound Design",
-                bullets: ["Original Scoring", "Tracks", "Audio Mixing", "Sound Design"],
-                color: "emerald"
               },
               {
                 icon: Star,

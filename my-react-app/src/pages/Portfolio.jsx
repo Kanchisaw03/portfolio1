@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {
   Camera,
   Video,
-  Music,
   Play,
   ExternalLink,
   Eye,
@@ -22,46 +21,47 @@ function Portfolio() {
   const [activeTab, setActiveTab] = useState('videography');
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   // Sample data - replace with real content
   const videographyItems = [
     {
       id: 1,
-      title: "Cinematic Wedding Film",
+      title: "Banaras Arti glimpses",
       role: "Director & Cinematographer",
       duration: "4:32",
       thumbnail: "/assets/20240516191907_IMG_9885.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      embedUrl: "https://www.youtube.com/embed/CMYXxja7T4c?si=t6G5GYRNNsESrHkf",
       views: "12.5K",
       likes: "1.2K"
     },
     {
       id: 2,
-      title: "Corporate Brand Story",
+      title: "Delhi Travel Story",
       role: "Creative Director",
       duration: "2:45",
       thumbnail: "/assets/20231111003208_IMG_2808.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      embedUrl: "https://youtube.com/shorts/wQODkCMJePs?si=Os8pnAJ1Iw1cQBeg",
       views: "8.3K",
       likes: "892"
     },
     {
       id: 3,
-      title: "Music Video Production",
+      title: "Beauty of Madhya Pradesh",
       role: "Director of Photography",
       duration: "3:18",
-      thumbnail: "/assets/20250412_164340.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      thumbnail: "/assets/Screenshot 2025-09-28 194850.jpg",
+      embedUrl: "https://youtube.com/shorts/m0v1x7puONU?si=7Qxt11B7cfNxlAuz",
       views: "25.7K",
       likes: "2.1K"
     },
     {
       id: 4,
-      title: "Documentary Short",
+      title: "Moments of Kedarnath",
       role: "Director & Editor",
       duration: "8:12",
-      thumbnail: "/assets/IMG_3740.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      thumbnail: "/assets/Screenshot 2025-09-28 200051.jpg",
+      embedUrl: "https://youtube.com/shorts/iHWURVLVMiY?si=WywTXGEeiEJ0ZVwF",
       views: "15.2K",
       likes: "1.8K"
     },
@@ -71,7 +71,7 @@ function Portfolio() {
       role: "Cinematographer",
       duration: "1:30",
       thumbnail: "/assets/20250412_164340.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      embedUrl: "https://youtube.com/shorts/lyag4Rj82sg?si=_g8d-ndf81LA_ECY",
       views: "9.8K",
       likes: "756"
     },
@@ -80,8 +80,8 @@ function Portfolio() {
       title: "Travel Documentary",
       role: "Solo Filmmaker",
       duration: "6:45",
-      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
-      embedUrl: "/assets/VID_20250531_093006_176.mp4",
+      thumbnail: "/assets/20250412_164340.jpg",
+      embedUrl: "https://www.youtube.com/embed/RRBRKS7Lru0?si=eaVRHwKaGEl42k1U",
       views: "32.1K",
       likes: "3.4K"
     }
@@ -154,41 +154,6 @@ function Portfolio() {
     }
   ];
 
-  const musicItems = [
-    {
-      id: 1,
-      title: "Cinematic Overture",
-      genre: "Orchestral",
-      duration: "4:32",
-      plays: "15.2K",
-      waveform: "/assets/20250412_164340.jpg"
-    },
-    {
-      id: 2,
-      title: "Urban Nights",
-      genre: "Electronic",
-      duration: "3:18",
-      plays: "22.7K",
-      waveform: "/assets/20231111003208_IMG_2808.jpg"
-    },
-    {
-      id: 3,
-      title: "Acoustic Dreams",
-      genre: "Acoustic",
-      duration: "5:45",
-      plays: "8.9K",
-      waveform: "/assets/20240516191907_IMG_9885.jpg"
-    },
-    {
-      id: 4,
-      title: "Epic Journey",
-      genre: "Cinematic",
-      duration: "6:12",
-      plays: "31.5K",
-      waveform: "/assets/20231111003208_IMG_2808.jpg"
-    }
-  ];
-
   const openLightbox = (index) => {
     setSelectedImage(photographyItems[index]);
     setCurrentImageIndex(index);
@@ -208,6 +173,14 @@ function Portfolio() {
     const prevIndex = currentImageIndex === 0 ? photographyItems.length - 1 : currentImageIndex - 1;
     setCurrentImageIndex(prevIndex);
     setSelectedImage(photographyItems[prevIndex]);
+  };
+
+  const openVideoModal = (video) => {
+    setSelectedVideo(video);
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
   };
 
   return (
@@ -247,9 +220,6 @@ function Portfolio() {
           <div className="absolute top-1/3 right-1/4 animate-float" style={{ animationDelay: '1s' }}>
             <Camera className="w-10 h-10 text-cyan-400 opacity-20" />
           </div>
-          <div className="absolute bottom-1/3 left-1/3 animate-float" style={{ animationDelay: '2s' }}>
-            <Music className="w-6 h-6 text-emerald-400 opacity-20" />
-          </div>
         </div>
         <div className="absolute inset-0 bg-gradient-radial from-teal-500/20 via-cyan-500/10 to-transparent"></div>
         
@@ -285,8 +255,7 @@ function Portfolio() {
           >
             {[
               { id: 'videography', icon: Video, label: 'Videography', count: videographyItems.length },
-              { id: 'photography', icon: Camera, label: 'Photography', count: photographyItems.length },
-              { id: 'music', icon: Music, label: 'Music', count: musicItems.length }
+              { id: 'photography', icon: Camera, label: 'Photography', count: photographyItems.length }
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -332,7 +301,14 @@ function Portfolio() {
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
                         
                         {/* Play Button */}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                        <div
+                          className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+                          onClick={() => {
+                            if (video.embedUrl.includes('youtube.com') || video.embedUrl.includes('youtu.be')) {
+                              openVideoModal(video);
+                            }
+                          }}
+                        >
                           {video.embedUrl.includes('.mp4') ? (
                             <OptimizedVideo
                               src={video.embedUrl}
@@ -422,76 +398,6 @@ function Portfolio() {
                 </div>
               </motion.div>
             )}
-
-            {activeTab === 'music' && (
-              <motion.div
-                key="music"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                  {musicItems.map((track, index) => (
-                    <motion.div
-                      key={track.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
-                      className="glass p-6 rounded-2xl group cursor-pointer hover:bg-white/10 transition-all duration-300 glow-cyan"
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="relative w-16 h-16">
-                          <div className="w-full h-full bg-gradient-to-br from-teal-500 to-cyan-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-6 h-6 text-white" />
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-br from-teal-400/50 to-cyan-400/50 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-serif font-bold text-white mb-1">{track.title}</h3>
-                          <p className="text-gray-400 text-sm">{track.genre}</p>
-                        </div>
-                        <div className="text-right text-sm text-gray-400">
-                          <div>{track.duration}</div>
-                          <div className="flex items-center gap-1 mt-1">
-                            <Play size={12} />
-                            {track.plays}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Waveform Visualization */}
-                      <div className="relative h-16 bg-gray-800 rounded-lg overflow-hidden mb-4">
-                        <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-cyan-500/20"></div>
-                        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-teal-500/40 to-transparent"></div>
-                        <div className="flex items-end justify-center h-full px-2 gap-1">
-                          {[...Array(20)].map((_, i) => (
-                            <div
-                              key={i}
-                              className="bg-gradient-to-t from-teal-400 to-cyan-400 rounded-sm transition-all duration-300 group-hover:from-teal-300 group-hover:to-cyan-300"
-                              style={{
-                                width: '3px',
-                                height: `${Math.random() * 60 + 10}%`,
-                                animationDelay: `${i * 0.1}s`
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-center">
-                        <button className="text-teal-400 hover:text-teal-300 transition-colors">
-                          <Play size={20} />
-                        </button>
-                        <div className="text-xs text-gray-500">
-                          0:00 / {track.duration}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
           </AnimatePresence>
         </div>
       </section>
@@ -543,6 +449,64 @@ function Portfolio() {
                 <h3 className="text-white text-xl font-serif font-bold mb-2">{selectedImage.title}</h3>
                 <p className="text-gray-300">{selectedImage.category}</p>
               </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={closeVideoModal}
+          >
+            <div className="relative max-w-4xl w-full max-h-full">
+              <button
+                onClick={closeVideoModal}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+              >
+                <X size={20} />
+              </button>
+
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                className="relative bg-black rounded-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative" style={{ paddingBottom: '56.25%', height: 0 }}>
+                  <iframe
+                    src={selectedVideo.embedUrl.replace('youtube.com/shorts/', 'youtube.com/embed/').replace('?si=', '?')}
+                    title={selectedVideo.title}
+                    className="absolute top-0 left-0 w-full h-full rounded-2xl"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                  <h3 className="text-lg font-serif font-bold text-white mb-1">{selectedVideo.title}</h3>
+                  <p className="text-gray-300 text-sm mb-2">{selectedVideo.role}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-teal-400 text-sm font-medium">{selectedVideo.duration}</span>
+                    <div className="flex items-center gap-4 text-xs text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <Eye size={12} />
+                        {selectedVideo.views}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Heart size={12} />
+                        {selectedVideo.likes}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         )}

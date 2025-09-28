@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import {
   Camera,
   Video,
-  Music,
   Instagram,
   Youtube,
   Mail,
@@ -28,24 +27,24 @@ function App() {
   const featuredProjects = [
     {
       id: 1,
-      title: "Cinematic Wedding Film",
+      title: "Banaras Arti glimpses",
       type: "Videography",
       image: "/assets/20240516191907_IMG_9885.jpg",
-      description: "A breathtaking wedding story captured with cinematic precision"
+      description: "Capturing the divine essence of Banaras Aarti with cinematic storytelling"
     },
     {
       id: 2,
-      title: "Portrait Series",
-      type: "Photography",
+      title: "Delhi Travel Story",
+      type: "Videography",
       image: "/assets/20231111003208_IMG_2808.jpg",
-      description: "Artistic portraits showcasing raw emotion and beauty"
+      description: "A visual journey through the bustling streets and vibrant culture of Delhi"
     },
     {
       id: 3,
-      title: "Ambient Soundscape",
-      type: "Music",
-      image: "/assets/20250412_164340.jpg",
-      description: "Original composition for film and commercial projects"
+      title: "Moments of Kedarnath",
+      type: "Videography",
+      image: "/assets/Screenshot 2025-09-28 200051.jpg",
+      description: "Sacred moments captured at one of India's most revered pilgrimage sites"
     }
   ];
 
@@ -119,12 +118,12 @@ function App() {
               >
                 Testimonials
               </button>
-              <button
+                <button
                 onClick={() => scrollToSection('contact')}
-                className="text-gray-300 hover:text-teal-400 transition-colors duration-300"
-              >
+                  className="text-gray-300 hover:text-teal-400 transition-colors duration-300"
+                >
                 Contact
-              </button>
+                </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -175,12 +174,12 @@ function App() {
                 >
                   Testimonials
                 </button>
-                <button
+                  <button
                   onClick={() => scrollToSection('contact')}
-                  className="block w-full text-left text-gray-300 hover:text-teal-400 transition-colors duration-300"
-                >
+                    className="block w-full text-left text-gray-300 hover:text-teal-400 transition-colors duration-300"
+                  >
                   Contact
-                </button>
+                  </button>
               </motion.div>
             )}
           </AnimatePresence>
@@ -200,9 +199,6 @@ function App() {
         <div className="absolute top-1/3 right-1/4 animate-float" style={{ animationDelay: '1s' }}>
           <Video className="w-10 h-10 text-accent-purple opacity-30" />
         </div>
-        <div className="absolute bottom-1/3 left-1/3 animate-float" style={{ animationDelay: '2s' }}>
-          <Music className="w-6 h-6 text-accent-gold opacity-30" />
-      </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <motion.h1
@@ -269,7 +265,7 @@ function App() {
                     src="/assets/Chatgpt.jpeg"
                     alt="Lakshya - Cinematographer, Photographer, Editor"
                     className="w-full h-full"
-                  />
+                    />
                     <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent"></div>
                   </div>
                   
@@ -348,8 +344,7 @@ function App() {
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {[
               { id: 'video', icon: Video, label: 'Videography' },
-              { id: 'photo', icon: Camera, label: 'Photography' },
-              { id: 'music', icon: Music, label: 'Music' }
+              { id: 'photo', icon: Camera, label: 'Photography' }
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -378,9 +373,9 @@ function App() {
               {activePortfolioTab === 'video' && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {[
-                    { title: "Cinematic Wedding Film", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
-                    { title: "Corporate Brand Story", role: "Creative Director", image: "/assets/20231111003208_IMG_2808.jpg", duration: "2:45" },
-                    { title: "Music Video Production", role: "Director of Photography", image: "/assets/20250412_164340.jpg", duration: "3:18" }
+                    { title: "Banaras Arti glimpses", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
+                    { title: "Delhi Travel Story", role: "Creative Director", image: "/assets/20231111003208_IMG_2808.jpg", duration: "2:45" },
+                    { title: "Moments of Kedarnath", role: "Director & Editor", image: "/assets/Screenshot 2025-09-28 200051.jpg", duration: "8:12" }
                   ].map((video, index) => (
                     <div key={index} className="group cursor-pointer" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="relative overflow-hidden rounded-xl bg-primary-700 aspect-video">
@@ -432,36 +427,6 @@ function App() {
                         </div>
                       </div>
                     </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {activePortfolioTab === 'music' && (
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  {[
-                    { title: "Cinematic Overture", duration: "4:32", genre: "Orchestral", image: "/assets/20250412_164340.jpg" },
-                    { title: "Urban Nights", duration: "3:18", genre: "Electronic", image: "/assets/20231111003208_IMG_2808.jpg" },
-                    { title: "Acoustic Dreams", duration: "5:45", genre: "Acoustic", image: "/assets/20240516191907_IMG_9885.jpg" },
-                    { title: "Epic Journey", duration: "6:12", genre: "Cinematic", image: "/assets/20231111003208_IMG_2808.jpg" }
-                  ].map((track, index) => (
-                    <div key={index} className="glass p-6 rounded-xl group cursor-pointer hover:bg-white/10 transition-colors" onClick={() => window.open('/portfolio', '_blank')}>
-                      <div className="flex items-center gap-4">
-                        <div className="relative w-16 h-16 overflow-hidden rounded-lg group-hover:scale-110 transition-transform">
-                          <OptimizedImage
-                            src={track.image}
-                            alt={`${track.title} album art`}
-                            className="w-full h-full"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-teal-500/20 to-cyan-500/20 flex items-center justify-center">
-                            <Play className="w-6 h-6 text-white" />
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg">{track.title}</h3>
-                          <p className="text-gray-400">{track.genre} • {track.duration}</p>
-                        </div>
-                      </div>
-                    </div>
                   ))}
                 </div>
               )}
@@ -671,7 +636,6 @@ function App() {
                     <option value="">Select Service</option>
                     <option value="videography">Videography</option>
                     <option value="photography">Photography</option>
-                    <option value="music">Music Composition</option>
                     <option value="all">All Services</option>
                   </select>
                 </div>
