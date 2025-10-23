@@ -14,6 +14,7 @@ import {
   Quote
 } from 'lucide-react';
 import OptimizedVideo from '../components/OptimizedVideo.jsx';
+import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -21,7 +22,7 @@ function Projects() {
   const projects = [
     {
       id: 1,
-      title: "Banaras Arti glimpses",
+      title: "Kurukshetra Arti glimpses",
       category: "Videography",
       role: "Director & Cinematographer",
       year: "2024",
@@ -30,7 +31,7 @@ function Projects() {
       thumbnail: "/assets/20240516191907_IMG_9885.jpg",
       heroImage: "/assets/20240516191907_IMG_9885.jpg",
       overview: {
-        goal: "Capture the divine essence of Banaras Aarti with cinematic storytelling that conveys spiritual depth",
+        goal: "Capture the divine essence of Kurukshetra Aarti with cinematic storytelling that conveys spiritual depth",
         inspiration: "Inspired by the sacred rituals and mystical atmosphere of the Ganges ghats",
         storytelling: "Focused on the spiritual journey and cultural significance of this ancient tradition"
       },
@@ -41,7 +42,7 @@ function Projects() {
       },
       finalOutput: "https://www.youtube.com/embed/CMYXxja7T4c?si=t6G5GYRNNsESrHkf",
       testimonial: {
-        text: "This film beautifully captured the divine essence of Banaras Aarti. The cinematography conveyed the spiritual depth and cultural significance in a way that touched our souls.",
+        text: "This film beautifully captured the divine essence of Kurukshetra Aarti. The cinematography conveyed the spiritual depth and cultural significance in a way that touched our souls.",
         author: "Priya Sharma",
         rating: 5
       }
@@ -135,10 +136,13 @@ function Projects() {
           {/* Hero Section */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
-              <img
+              <OptimizedImage
                 src={project.heroImage}
                 alt={project.title}
                 className="w-full h-full object-cover"
+                priority
+                sizes="100vw"
+                useWebP
               />
               <div className="absolute inset-0 bg-gray-900/60"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900/40"></div>
@@ -460,18 +464,20 @@ function Projects() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 className="group cursor-pointer"
                 onClick={() => setSelectedProject(project.id)}
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gray-800 aspect-[4/3]">
-                  <img
+                  <OptimizedImage
                     src={project.thumbnail}
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    useWebP
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
                   <div className="absolute inset-0 bg-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

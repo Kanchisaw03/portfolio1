@@ -16,6 +16,7 @@ import {
   Star
 } from 'lucide-react';
 import OptimizedVideo from '../components/OptimizedVideo.jsx';
+import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function Portfolio() {
   const [activeTab, setActiveTab] = useState('videography');
@@ -27,7 +28,7 @@ function Portfolio() {
   const videographyItems = [
     {
       id: 1,
-      title: "Banaras Arti glimpses",
+      title: "Kurukshetra Arti glimpses",
       role: "Director & Cinematographer",
       duration: "4:32",
       thumbnail: "/assets/20240516191907_IMG_9885.jpg",
@@ -138,7 +139,7 @@ function Portfolio() {
     },
     {
       id: 7,
-      title: "Banaras Arti",
+      title: "Kurukshetra Arti",
       category: "Event",
       image: "/assets/20240516191907_IMG_9885.jpg",
       likes: "678",
@@ -287,16 +288,18 @@ function Portfolio() {
                   {videographyItems.map((video, index) => (
                     <motion.div
                       key={video.id}
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: index * 0.1 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
                       className="group cursor-pointer"
                     >
                       <div className="relative overflow-hidden rounded-2xl bg-gray-800 aspect-video">
-                        <img
+                        <OptimizedImage
                           src={video.thumbnail}
                           alt={video.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          useWebP
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
                         
@@ -361,17 +364,19 @@ function Portfolio() {
                   {photographyItems.map((photo, index) => (
                     <motion.div
                       key={photo.id}
-                      initial={{ opacity: 0, scale: 0.8 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
                       className="break-inside-avoid group cursor-pointer"
                       onClick={() => openLightbox(index)}
                     >
                       <div className="relative overflow-hidden rounded-xl">
-                        <img
+                        <OptimizedImage
                           src={photo.image}
                           alt={photo.title}
                           className="w-full group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          useWebP
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-4 left-4 right-4">
@@ -434,16 +439,22 @@ function Portfolio() {
                 <ChevronRight size={24} />
               </button>
 
-              <motion.img
+              <motion.div
                 key={selectedImage.id}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
-                src={selectedImage.image}
-                alt={selectedImage.title}
-                className="max-w-full max-h-full object-contain rounded-xl"
+                className="max-w-full max-h-full"
                 onClick={(e) => e.stopPropagation()}
-              />
+              >
+                <OptimizedImage
+                  src={selectedImage.image}
+                  alt={selectedImage.title}
+                  className="max-w-full max-h-full object-contain rounded-xl"
+                  priority
+                  useWebP
+                />
+              </motion.div>
               
               <div className="absolute bottom-4 left-4 right-4 text-center">
                 <h3 className="text-white text-xl font-serif font-bold mb-2">{selectedImage.title}</h3>

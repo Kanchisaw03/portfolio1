@@ -27,10 +27,10 @@ function App() {
   const featuredProjects = [
     {
       id: 1,
-      title: "Banaras Arti glimpses",
+      title: "Kurukshetra Arti glimpses",
       type: "Videography",
       image: "/assets/20240516191907_IMG_9885.jpg",
-      description: "Capturing the divine essence of Banaras Aarti with cinematic storytelling"
+      description: "Capturing the divine essence of Kurukshetra Aarti with cinematic storytelling"
     },
     {
       id: 2,
@@ -187,62 +187,276 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with cinematic gradient */}
-        <div className="absolute inset-0 bg-cinematic"></div>
-        <div className="absolute inset-0 bg-hero-glow"></div>
-        
-        {/* Floating elements */}
-        <div className="absolute top-1/4 left-1/4 animate-float">
-          <Camera className="w-8 h-8 text-accent-blue opacity-30" />
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Portfolio Title - Left Side */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          className="absolute left-8 md:left-16 top-1/4 z-20"
+        >
+          <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-mono tracking-wider leading-tight">
+            PORT-<br />FOLIO
+          </h1>
+        </motion.div>
+
+        {/* Animated Photo Strip - Diagonal Band */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute left-0 w-full h-full flex items-end justify-center"
+            style={{ 
+              transform: 'rotate(-15deg) translateZ(0)',
+              transformOrigin: 'bottom center'
+            }}
+          >
+            <motion.div
+              className="flex gap-2 items-center whitespace-nowrap"
+              style={{ 
+                marginBottom: '20%',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+              animate={{
+                x: [0, '-50%']
+              }}
+              transition={{
+                duration: 45,
+                repeat: Infinity,
+                ease: 'linear',
+                type: 'tween'
+              }}
+            >
+              {[
+                '/assets/20231111003208_IMG_2808.jpg',
+                '/assets/20240516191907_IMG_9885.jpg',
+                '/assets/IMG_1390.jpg',
+                '/assets/IMG_3740.jpg',
+                '/assets/IMG_9776.jpg',
+                '/assets/IMG_1572.JPG',
+                '/assets/IMG_20250315_112226311.jpg',
+                '/assets/20250412_164340.jpg',
+                '/assets/IMG_4571 (1).jpg',
+                '/assets/IMG-20250521-WA0032.jpg',
+                '/assets/IMG20230409161909 (1).jpg',
+                '/assets/Screenshot 2025-09-28 194850.jpg',
+                '/assets/Chatgpt.jpeg',
+                // Duplicate for seamless loop
+                '/assets/20231111003208_IMG_2808.jpg',
+                '/assets/20240516191907_IMG_9885.jpg',
+                '/assets/IMG_1390.jpg',
+                '/assets/IMG_3740.jpg',
+                '/assets/IMG_9776.jpg',
+                '/assets/IMG_1572.JPG',
+                '/assets/IMG_20250315_112226311.jpg',
+                '/assets/20250412_164340.jpg',
+                '/assets/IMG_4571 (1).jpg',
+                '/assets/IMG-20250521-WA0032.jpg',
+                '/assets/IMG20230409161909 (1).jpg',
+                '/assets/Screenshot 2025-09-28 194850.jpg',
+                '/assets/Chatgpt.jpeg'
+              ].map((img, index) => {
+                const rotations = [-2, 1, -1, 2, 0, -2, 1];
+                const rotation = rotations[index % rotations.length];
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="w-44 h-60 md:w-52 md:h-72 lg:w-60 lg:h-80 flex-shrink-0 relative"
+                    style={{ 
+                      transform: `rotate(${rotation}deg) translateZ(0)`,
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden'
+                    }}
+                  >
+                    <div className="w-full h-full relative overflow-hidden shadow-xl" style={{ transform: 'translateZ(0)' }}>
+                      <OptimizedImage
+                        src={img}
+                        alt={`Portfolio ${index}`}
+                        className="w-full h-full object-cover"
+                        sizes="(max-width: 768px) 176px, (max-width: 1024px) 208px, 240px"
+                        useWebP
+                      />
         </div>
-        <div className="absolute top-1/3 right-1/4 animate-float" style={{ animationDelay: '1s' }}>
-          <Video className="w-10 h-10 text-accent-purple opacity-30" />
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <motion.h1
+        {/* Contact Info - Bottom Left */}
+        <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6 text-glow"
-          >
-            See the World Cinematically
-            <span className="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
-              {' '}Through My Lens
-            </span>
-          </motion.h1>
+          transition={{ duration: 1, delay: 0.5 }}
+          className="absolute bottom-8 left-8 md:left-16 z-20 text-white"
+        >
+          <p className="text-sm md:text-base font-mono tracking-wider mb-1">LAKSHYA SINGH TOMAR</p>
+          <p className="text-xs md:text-sm text-gray-400">TEL: 079547 96666</p>
+          <p className="text-xs md:text-sm text-gray-400">lakshyasinghtomargwl@gmail.com</p>
+          <p className="text-xs md:text-sm text-gray-400 mt-2">MANTE</p>
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+        {/* Photo Collage - Bottom Right - Creative Grid Layout */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          className="absolute bottom-4 right-8 md:right-16 z-20 hidden lg:flex items-end gap-6"
+        >
+          {/* Vertical Text - Left Side of Collage */}
+          <div 
+            className="text-white font-bold text-5xl opacity-70 mb-20"
+            style={{ 
+              writingMode: 'vertical-rl',
+              fontFamily: 'serif',
+              fontStyle: 'italic',
+              textShadow: '2px 2px 6px rgba(0,0,0,0.9)',
+              letterSpacing: '0.2em'
+            }}
+          >
+            LAKSHYA
+          </div>
+
+          {/* Photo Grid */}
+          <div className="relative flex flex-col gap-1" style={{ width: '280px', height: '65vh' }}>
+            {/* Row 1: Large tall rectangle - Main focus */}
+            <div className="w-full h-48 overflow-hidden">
+              <OptimizedImage
+                src="/assets/IMG_3740.jpg"
+                alt="Portfolio 1"
+                className="w-full h-full object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 280px"
+                useWebP
+              />
+            </div>
+            
+            {/* Row 3: Two squares side by side */}
+            <div className="w-full h-24 flex gap-1">
+              <div className="w-1/2 h-full overflow-hidden">
+                <OptimizedImage
+                  src="/assets/IMG_9776.jpg"
+                  alt="Portfolio 3"
+                  className="w-full h-full object-cover"
+                  useWebP
+                />
+              </div>
+              <div className="w-1/2 h-full overflow-hidden">
+                <OptimizedImage
+                  src="/assets/20250412_164340.jpg"
+                  alt="Portfolio 4"
+                  className="w-full h-full object-cover"
+                  useWebP
+                />
+              </div>
+            </div>
+            
+            {/* Row 4: Thin rectangle */}
+            <div className="w-full h-18 overflow-hidden">
+              <OptimizedImage
+                src="/assets/IMG_1572.JPG"
+                alt="Portfolio 5"
+                className="w-full h-full object-cover"
+                useWebP
+              />
+            </div>
+            
+            {/* Row 5: Two squares side by side */}
+            <div className="w-full h-24 flex gap-1">
+              <div className="w-1/2 h-full overflow-hidden">
+                <OptimizedImage
+                  src="/assets/IMG-20250521-WA0032.jpg"
+                  alt="Portfolio 6"
+                  className="w-full h-full object-cover"
+                  useWebP
+                />
+              </div>
+              <div className="w-1/2 h-full overflow-hidden">
+                <OptimizedImage
+                  src="/assets/IMG20230409161909 (1).jpg"
+                  alt="Portfolio 7"
+                  className="w-full h-full object-cover"
+                  useWebP
+                />
+              </div>
+            </div>
+            
+            {/* Bottom Text Block - Overlaid on collage */}
+            <div className="absolute bottom-3 left-0 right-0 text-center text-white z-10 bg-black/40 py-2">
+              <p 
+                className="text-2xl font-bold tracking-wider mb-1"
+                style={{ 
+                  fontFamily: 'sans-serif',
+                  textShadow: '2px 2px 6px rgba(0,0,0,0.9)'
+                }}
+              >
+                ALLOUT
+              </p>
+              <div className="flex justify-center items-center gap-2 mb-1">
+                <div className="w-3 h-3 border border-white transform rotate-45"></div>
+                <div className="w-3 h-3 border border-white transform rotate-45"></div>
+                <div className="w-3 h-3 border border-white transform rotate-45"></div>
+                <div className="w-3 h-3 border border-white transform rotate-45"></div>
+              </div>
+              <p 
+                className="text-xs tracking-widest opacity-90"
+                style={{ 
+                  fontFamily: 'monospace',
+                  textShadow: '1px 1px 3px rgba(0,0,0,0.9)'
+                }}
+              >
+                LAKSHYA.X.CHOUDHARY
+              </p>
+            </div>
+          </div>
+
+          {/* Cursive Signature Watermark - Right Side */}
+          <div className="text-white mb-20">
+            <p 
+              className="text-2xl opacity-70"
+              style={{ 
+                fontFamily: 'cursive',
+                fontStyle: 'italic',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
+              }}
+            >
+              Lakshay Choudhary
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Vertical Text - Right Side */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 font-light"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20"
+          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
           >
-             Photographer • Cinematographer • Editor
-          </motion.p>
+          <p className="text-white text-xs md:text-sm tracking-widest font-mono">CINEMATOGRAPHER • PHOTOGRAPHER • EDITOR</p>
+        </motion.div>
 
+        {/* CTA Buttons - Center Bottom */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+          transition={{ duration: 1, delay: 0.8 }}
+          className="absolute bottom-8 right-8 md:right-16 z-20 flex flex-col sm:flex-row gap-4"
           >
             <Link
               to="/portfolio"
-              className="btn-primary group"
+            className="px-6 py-3 bg-white text-black font-mono text-sm hover:bg-gray-200 transition-colors rounded"
             >
-              View Portfolio
-              <ExternalLink className="inline-block ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            VIEW WORK
             </Link>
             <button
               onClick={() => scrollToSection('contact')}
-              className="btn-secondary"
+            className="px-6 py-3 border border-white text-white font-mono text-sm hover:bg-white hover:text-black transition-colors rounded"
             >
-              Get in Touch
+            CONTACT
         </button>
           </motion.div>
-        </div>
       </section>
 
       {/* About Section */}
@@ -265,6 +479,9 @@ function App() {
                     src="/assets/photo.jpg"
                     alt="Lakshya - Cinematographer, Photographer, Editor"
                     className="w-full h-full"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 320px"
+                    useWebP
                     />
                     <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent"></div>
                   </div>
@@ -373,7 +590,7 @@ function App() {
               {activePortfolioTab === 'video' && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {[
-                    { title: "Banaras Arti glimpses", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
+                    { title: "Kurukshetra Arti glimpses", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
                     { title: "Delhi Travel Story", role: "Creative Director", image: "/assets/20231111003208_IMG_2808.jpg", duration: "2:45" },
                     { title: "Moments of Kedarnath", role: "Director & Editor", image: "/assets/Screenshot 2025-09-28 200051.jpg", duration: "8:12" }
                   ].map((video, index) => (
@@ -383,6 +600,8 @@ function App() {
                           src={video.image}
                           alt={`${video.title} - ${video.role}`}
                           className="w-full h-full group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          useWebP
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                           <Play className="w-12 h-12 text-white" />
@@ -418,6 +637,8 @@ function App() {
                           src={photo.image}
                           alt={`${photo.title} - ${photo.category}`}
                           className="w-full group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          useWebP
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           <div className="absolute bottom-4 left-4 text-white">
@@ -484,6 +705,8 @@ function App() {
                             src={project.image}
                             alt={`${project.title} - ${project.type}`}
                             className="w-full h-96 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                            useWebP
                           />
                           <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/30 to-cyan-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
