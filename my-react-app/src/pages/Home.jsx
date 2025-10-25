@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useMemo, memo } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Camera,
@@ -20,11 +20,12 @@ import {
 import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function App() {
+  const shouldReduceMotion = useReducedMotion();
   const [activePortfolioTab, setActivePortfolioTab] = useState('video');
   const [currentProject, setCurrentProject] = useState(0);
 
-  // Featured projects data
-  const featuredProjects = [
+  // Featured projects data - memoized to prevent recreation
+  const featuredProjects = useMemo(() => [
     {
       id: 1,
       title: "Kurukshetra Arti glimpses",
@@ -46,10 +47,10 @@ function App() {
       image: "/assets/Screenshot 2025-09-28 200051.jpg",
       description: "Sacred moments captured at one of India's most revered pilgrimage sites"
     }
-  ];
+  ], []);
 
-  // Testimonials data - Real clients from Lakshya's portfolio PDF
-  const testimonials = [
+  // Testimonials data - Real clients from Lakshya's portfolio PDF - memoized
+  const testimonials = useMemo(() => [
     {
       name: "Diorama Designs",
       role: "Client",
@@ -62,7 +63,7 @@ function App() {
       text: "Working with Lakshya was a smooth and inspiring process. He has a strong eye for cinematic storytelling and understands how to balance artistry with brand needs.",
       rating: 5
     }
-  ];
+  ], []);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Smooth scrolling function
@@ -200,8 +201,8 @@ function App() {
           </h1>
         </motion.div>
 
-        {/* Animated Photo Strip - Diagonal Band */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Animated Photo Strip - Diagonal Band - Pure CSS Animation for Performance */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
             className="absolute left-0 w-full h-full flex items-end justify-center"
             style={{ 
@@ -209,78 +210,55 @@ function App() {
               transformOrigin: 'bottom center'
             }}
           >
-            <motion.div
-              className="flex gap-2 items-center whitespace-nowrap"
+            {/* Pure CSS animation - No JavaScript re-renders! */}
+            <div
+              className={`flex gap-2 items-center whitespace-nowrap ${shouldReduceMotion ? '' : 'animate-photo-carousel'}`}
               style={{ 
                 marginBottom: '20%',
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden'
               }}
-              animate={{
-                x: [0, '-50%']
-              }}
-              transition={{
-                duration: 45,
-                repeat: Infinity,
-                ease: 'linear',
-                type: 'tween'
-              }}
             >
+              {/* Optimized: Reduced from 26 to 8 images for better performance */}
               {[
-                '/assets/20231111003208_IMG_2808.jpg',
                 '/assets/20240516191907_IMG_9885.jpg',
-                '/assets/IMG_1390.jpg',
                 '/assets/IMG_3740.jpg',
                 '/assets/IMG_9776.jpg',
-                '/assets/IMG_1572.JPG',
-                '/assets/IMG_20250315_112226311.jpg',
                 '/assets/20250412_164340.jpg',
-                '/assets/IMG_4571 (1).jpg',
-                '/assets/IMG-20250521-WA0032.jpg',
-                '/assets/IMG20230409161909 (1).jpg',
-                '/assets/Screenshot 2025-09-28 194850.jpg',
-                '/assets/Chatgpt.jpeg',
-                // Duplicate for seamless loop
-                '/assets/20231111003208_IMG_2808.jpg',
+                // Duplicate for seamless loop (only 4 images duplicated)
                 '/assets/20240516191907_IMG_9885.jpg',
-                '/assets/IMG_1390.jpg',
                 '/assets/IMG_3740.jpg',
                 '/assets/IMG_9776.jpg',
-                '/assets/IMG_1572.JPG',
-                '/assets/IMG_20250315_112226311.jpg',
-                '/assets/20250412_164340.jpg',
-                '/assets/IMG_4571 (1).jpg',
-                '/assets/IMG-20250521-WA0032.jpg',
-                '/assets/IMG20230409161909 (1).jpg',
-                '/assets/Screenshot 2025-09-28 194850.jpg',
-                '/assets/Chatgpt.jpeg'
+                '/assets/20250412_164340.jpg'
               ].map((img, index) => {
-                const rotations = [-2, 1, -1, 2, 0, -2, 1];
-                const rotation = rotations[index % rotations.length];
+                const rotations = [-2, 1, -1, 2];
+                const rotation = shouldReduceMotion ? 0 : rotations[index % rotations.length];
                 
                 return (
                   <div 
                     key={index} 
-                    className="w-44 h-60 md:w-52 md:h-72 lg:w-60 lg:h-80 flex-shrink-0 relative"
+                    className="w-44 h-60 md:w-52 md:h-72 lg:w-60 lg:h-80 flex-shrink-0 relative pointer-events-auto"
                     style={{ 
                       transform: `rotate(${rotation}deg) translateZ(0)`,
                       backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden'
+                      WebkitBackfaceVisibility: 'hidden',
+                      willChange: 'auto'
                     }}
                   >
                     <div className="w-full h-full relative overflow-hidden shadow-xl" style={{ transform: 'translateZ(0)' }}>
                       <OptimizedImage
                         src={img}
-                        alt={`Portfolio ${index}`}
+                        alt={`Portfolio ${Math.floor(index / 2) + 1}`}
                         className="w-full h-full object-cover"
                         sizes="(max-width: 768px) 176px, (max-width: 1024px) 208px, 240px"
                         useWebP
+                        priority={index < 2}
                       />
         </div>
                   </div>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -466,8 +444,8 @@ function App() {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0.01 : 0.8 }}
+              viewport={{ once: true, margin: "0px 0px -100px 0px" }}
               className="flex justify-center lg:justify-start"
             >
               <div className="relative w-80 h-96 group perspective-1000">
@@ -504,8 +482,8 @@ function App() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0.01 : 0.8 }}
+              viewport={{ once: true, margin: "0px 0px -100px 0px" }}
               className="space-y-6"
             >
               <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full"></div>

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useMemo } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -17,9 +17,10 @@ import OptimizedVideo from '../components/OptimizedVideo.jsx';
 import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function Projects() {
+  const shouldReduceMotion = useReducedMotion();
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: 1,
       title: "Kurukshetra Arti glimpses",
@@ -101,7 +102,7 @@ function Projects() {
         rating: 5
       }
     }
-  ];
+  ], []);
 
   if (selectedProject) {
     const project = projects.find(p => p.id === selectedProject);

@@ -54,6 +54,12 @@ const OptimizedImage = ({
   useEffect(() => {
     if (priority) return; // Skip lazy loading for priority images
 
+    // Check if IntersectionObserver is supported
+    if (!'IntersectionObserver' in window) {
+      setIsInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -63,7 +69,7 @@ const OptimizedImage = ({
       },
       { 
         threshold: 0.01, // Load earlier
-        rootMargin: '100px' // Preload 100px before visible
+        rootMargin: '200px' // Preload 200px before visible for smoother scrolling
       }
     );
 
@@ -71,7 +77,11 @@ const OptimizedImage = ({
       observer.observe(imgRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (observer && imgRef.current) {
+        observer.disconnect();
+      }
+    };
   }, [priority]);
 
   // Preload critical images
@@ -99,6 +109,15 @@ const OptimizedImage = ({
   const handleLoad = () => {
     setIsLoaded(true);
     setHasError(false); // Clear any errors on successful load
+    
+    // Remove will-change after animation completes to save memory
+    if (imgRef.current) {
+      setTimeout(() => {
+        if (imgRef.current) {
+          imgRef.current.style.willChange = 'auto';
+        }
+      }, 500);
+    }
   };
 
   const handleError = (e) => {
@@ -114,7 +133,7 @@ const OptimizedImage = ({
   const defaultPlaceholder = placeholder || generateBlurPlaceholder();
 
   return (
-    <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
+    <div ref={imgRef} className={`relative overflow-hidden ${className}`} style={{ willChange: isLoaded ? 'auto' : 'contents' }}>
       {/* Blur-up Placeholder */}
       {!isLoaded && !hasError && (
         <div
@@ -123,13 +142,13 @@ const OptimizedImage = ({
             backgroundImage: `url(${defaultPlaceholder})`,
             backgroundSize: 'cover',
             filter: 'blur(10px)',
-            transform: 'scale(1.1)', // Prevent blur edge artifacts
+            transform: 'scale(1.1) translateZ(0)', // Prevent blur edge artifacts & enable GPU
           }}
         />
       )}
 
-      {/* Shimmer Loading Effect */}
-      {!isLoaded && !hasError && (
+      {/* Shimmer Loading Effect - Only for non-priority images */}
+      {!isLoaded && !hasError && !priority && (
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
       )}
 

@@ -1,14 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
-
-/* Preload critical fonts */
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuDyfAZ9hiJ-Ek-_EeA.woff2")
-    format("woff2");
-}
+/* Optimized font loading - preconnect and use link in HTML instead of @import */
+/* Fonts are now loaded via index.html for better performance */
 
 @tailwind base;
 @tailwind components;
@@ -94,11 +85,33 @@ h6 {
   box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
 }
 
-/* Glass morphism effect */
+/* Glass morphism effect - Optimized for performance */
 .glass {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  /* Reduced blur for better performance */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Enable GPU acceleration */
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Further reduce effects on smaller screens */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+/* Reduced backdrop blur for better performance */
+@media (prefers-reduced-motion: reduce) {
+  .glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* 3D Transform Utilities */
@@ -146,14 +159,14 @@ h6 {
   transform: rotateY(12deg) rotateX(6deg);
 }
 
-/* Custom animations */
+/* Custom animations - GPU accelerated */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0px) translateZ(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-20px) translateZ(0);
   }
 }
 
@@ -167,10 +180,105 @@ h6 {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Optimized photo carousel animation - Pure CSS, GPU-accelerated */
+@keyframes photo-carousel-scroll {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-photo-carousel {
+  animation: photo-carousel-scroll 30s linear infinite;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Pause animation on hover for better UX */
+.animate-photo-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Performance optimizations */
+img,
+video {
+  /* Prevent layout shifts */
+  max-width: 100%;
+  height: auto;
+  /* Enable GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-shimmer,
+  .animate-photo-carousel {
+    animation: none !important;
+  }
+}
+
+/* Hardware acceleration for specific elements */
+.hw-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize scrolling performance */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  /* Improve font rendering performance */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Optimize animations for low-end devices */
+@media (max-width: 768px) {
+  .glass {
+    /* Reduce blur on mobile for better performance */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 }

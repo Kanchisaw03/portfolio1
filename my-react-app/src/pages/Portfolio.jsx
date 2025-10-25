@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useMemo, memo } from 'react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Camera,
@@ -19,13 +19,14 @@ import OptimizedVideo from '../components/OptimizedVideo.jsx';
 import OptimizedImage from '../components/OptimizedImage.jsx';
 
 function Portfolio() {
+  const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState('videography');
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  // Sample data - replace with real content
-  const videographyItems = [
+  // Sample data - memoized for performance
+  const videographyItems = useMemo(() => [
     {
       id: 1,
       title: "Kurukshetra Arti glimpses",
@@ -86,9 +87,9 @@ function Portfolio() {
       views: "32.1K",
       likes: "3.4K"
     }
-  ];
+  ], []);
 
-  const photographyItems = [
+  const photographyItems = useMemo(() => [
     {
       id: 1,
       title: "Urban Portrait Series",
@@ -153,7 +154,7 @@ function Portfolio() {
       likes: "234",
       shares: "56"
     }
-  ];
+  ], []);
 
   const openLightbox = (index) => {
     setSelectedImage(photographyItems[index]);
