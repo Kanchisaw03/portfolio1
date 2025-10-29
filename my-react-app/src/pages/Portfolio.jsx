@@ -32,7 +32,7 @@ function Portfolio() {
       title: "Kurukshetra Arti glimpses",
       role: "Director & Cinematographer",
       duration: "4:32",
-      thumbnail: "/assets/20240516191907_IMG_9885.jpg",
+      thumbnail: "https://img.youtube.com/vi/CMYXxja7T4c/hqdefault.jpg",
       embedUrl: "https://www.youtube.com/embed/CMYXxja7T4c?si=t6G5GYRNNsESrHkf",
       views: "12.5K",
       likes: "1.2K"
@@ -42,50 +42,70 @@ function Portfolio() {
       title: "Delhi Travel Story",
       role: "Creative Director",
       duration: "2:45",
-      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
+      thumbnail: "https://img.youtube.com/vi/wQODkCMJePs/hqdefault.jpg",
       embedUrl: "https://youtube.com/shorts/wQODkCMJePs?si=Os8pnAJ1Iw1cQBeg",
       views: "8.3K",
       likes: "892"
     },
     {
       id: 3,
+      title: "Kedarnath : The Dream Destination",
+      role: "Director & Cinematographer",
+      duration: "5:18",
+      thumbnail: "https://img.youtube.com/vi/sHJVhOaq2po/hqdefault.jpg",
+      embedUrl: "https://www.youtube.com/embed/sHJVhOaq2po",
+      views: "18.4K",
+      likes: "2.3K"
+    },
+    {
+      id: 4,
       title: "Beauty of Madhya Pradesh",
       role: "Director of Photography",
       duration: "3:18",
-      thumbnail: "/assets/Screenshot 2025-09-28 194850.jpg",
+      thumbnail: "https://img.youtube.com/vi/m0v1x7puONU/hqdefault.jpg",
       embedUrl: "https://youtube.com/shorts/m0v1x7puONU?si=7Qxt11B7cfNxlAuz",
       views: "25.7K",
       likes: "2.1K"
     },
     {
-      id: 4,
+      id: 5,
       title: "Moments of Kedarnath",
       role: "Director & Editor",
       duration: "8:12",
-      thumbnail: "/assets/Screenshot 2025-09-28 200051.jpg",
+      thumbnail: "https://img.youtube.com/vi/iHWURVLVMiY/hqdefault.jpg",
       embedUrl: "https://youtube.com/shorts/iHWURVLVMiY?si=WywTXGEeiEJ0ZVwF",
       views: "15.2K",
       likes: "1.8K"
     },
     {
-      id: 5,
+      id: 6,
       title: "Fashion Commercial",
       role: "Cinematographer",
       duration: "1:30",
-      thumbnail: "/assets/20250412_164340.jpg",
+      thumbnail: "https://img.youtube.com/vi/lyag4Rj82sg/hqdefault.jpg",
       embedUrl: "https://youtube.com/shorts/lyag4Rj82sg?si=_g8d-ndf81LA_ECY",
       views: "9.8K",
       likes: "756"
     },
     {
-      id: 6,
+      id: 7,
       title: "Travel Documentary",
       role: "Solo Filmmaker",
       duration: "6:45",
-      thumbnail: "/assets/20250412_164340.jpg",
+      thumbnail: "https://img.youtube.com/vi/RRBRKS7Lru0/hqdefault.jpg",
       embedUrl: "https://www.youtube.com/embed/RRBRKS7Lru0?si=eaVRHwKaGEl42k1U",
       views: "32.1K",
       likes: "3.4K"
+    },
+    {
+      id: 8,
+      title: "Do everything that scares you...",
+      role: "Director & Cinematographer",
+      duration: "4:22",
+      thumbnail: "https://img.youtube.com/vi/YVqNt2TlpLo/hqdefault.jpg",
+      embedUrl: "https://www.youtube.com/embed/YVqNt2TlpLo",
+      views: "15.3K",
+      likes: "1.8K"
     }
   ], []);
 
@@ -94,7 +114,7 @@ function Portfolio() {
       id: 1,
       title: "Urban Portrait Series",
       category: "Portrait",
-      image: "/assets/20231111003208_IMG_2808.jpg",
+      image: "/assets/20231111003208_IMG_2808.webp",
       likes: "234",
       shares: "45"
     },
@@ -102,7 +122,7 @@ function Portfolio() {
       id: 2,
       title: "Golden Hour Landscape",
       category: "Landscape",
-      image: "/assets/20240516191907_IMG_9885.jpg",
+      image: "/assets/20240516191907_IMG_9885.webp",
       likes: "456",
       shares: "78"
     },
@@ -110,7 +130,7 @@ function Portfolio() {
       id: 3,
       title: "Street Photography",
       category: "Street",
-      image: "/assets/20250412_164340.jpg",
+      image: "/assets/20250412_164340.webp",
       likes: "189",
       shares: "23"
     },
@@ -118,7 +138,7 @@ function Portfolio() {
       id: 4,
       title: "Fashion Editorial",
       category: "Fashion",
-      image: "/assets/IMG_1390.jpg",
+      image: "/assets/IMG_1390.webp",
       likes: "567",
       shares: "123"
     },
@@ -126,7 +146,7 @@ function Portfolio() {
       id: 5,
       title: "Architectural Details",
       category: "Architecture",
-      image: "/assets/IMG_3740.jpg",
+      image: "/assets/IMG_3740.webp",
       likes: "312",
       shares: "67"
     },
@@ -134,7 +154,7 @@ function Portfolio() {
       id: 6,
       title: "Nature Close-up",
       category: "Nature",
-      image: "/assets/IMG_4571 (1).jpg",
+      image: "/assets/IMG_4571 (1).webp",
       likes: "445",
       shares: "89"
     },
@@ -142,7 +162,7 @@ function Portfolio() {
       id: 7,
       title: "Kurukshetra Arti",
       category: "Event",
-      image: "/assets/20240516191907_IMG_9885.jpg",
+      image: "/assets/20240516191907_IMG_9885.webp",
       likes: "678",
       shares: "145"
     },
@@ -150,9 +170,137 @@ function Portfolio() {
       id: 8,
       title: "Minimalist Composition",
       category: "Abstract",
-      image: "/assets/IMG20230409161909 (1).jpg",
+      image: "/assets/IMG20230409161909 (1).webp",
       likes: "234",
       shares: "56"
+    },
+    {
+      id: 9,
+      title: "Creative Moments",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749986/InShot_20251015_183927319_rbuzph.jpg",
+      likes: "523",
+      shares: "98"
+    },
+    {
+      id: 10,
+      title: "Cinematic Frames",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749986/InShot_20251015_185418258_bkqzjj.jpg",
+      likes: "412",
+      shares: "76"
+    },
+    {
+      id: 11,
+      title: "Artistic Vision",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749984/InShot_20251015_181058909_mbq33i.jpg",
+      likes: "389",
+      shares: "65"
+    },
+    {
+      id: 12,
+      title: "Light & Shadow",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749982/InShot_20251015_170812440_j9t6ei.jpg",
+      likes: "456",
+      shares: "82"
+    },
+    {
+      id: 13,
+      title: "Summer Vibes",
+      category: "Lifestyle",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250718_003915652_tvjro3.jpg",
+      likes: "601",
+      shares: "112"
+    },
+    {
+      id: 14,
+      title: "Urban Stories",
+      category: "Street",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250527_131156334_ypanjw.jpg",
+      likes: "378",
+      shares: "54"
+    },
+    {
+      id: 15,
+      title: "Natural Beauty",
+      category: "Nature",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749964/InShot_20250603_150634673_swy7io.jpg",
+      likes: "492",
+      shares: "88"
+    },
+    {
+      id: 16,
+      title: "Candid Captures",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749962/InShot_20250502_104237033_f4omt6.jpg",
+      likes: "534",
+      shares: "95"
+    },
+    {
+      id: 17,
+      title: "Evening Glow",
+      category: "Lifestyle",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749966/InShot_20250630_003930620_scmy0g.jpg",
+      likes: "445",
+      shares: "71"
+    },
+    {
+      id: 18,
+      title: "Creative Expression",
+      category: "Portrait",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749973/InShot_20251004_123707382_u84jcw.jpg",
+      likes: "512",
+      shares: "89"
+    },
+    {
+      id: 19,
+      title: "Artistic Moments",
+      category: "Fashion",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749968/InShot_20250814_173153453_qeiawr.jpg",
+      likes: "623",
+      shares: "134"
+    },
+    {
+      id: 20,
+      title: "Summer Nights",
+      category: "Lifestyle",
+      image: "https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250718_003403088_vh2lyb.jpg",
+      likes: "487",
+      shares: "79"
+    },
+    {
+      id: 21,
+      title: "Scenic Views",
+      category: "Landscape",
+      image: "/assets/IMG_9776.webp",
+      likes: "556",
+      shares: "102"
+    },
+    {
+      id: 22,
+      title: "Captured Moments",
+      category: "Event",
+      image: "/assets/IMG-20250521-WA0032.webp",
+      likes: "398",
+      shares: "67"
+    },
+    {
+      id: 23,
+      title: "Timeless Frames",
+      category: "Portrait",
+      image: "/assets/IMG_1572.webp",
+      likes: "471",
+      shares: "84"
+    },
+    {
+      id: 24,
+      title: "Daily Life",
+      category: "Street",
+      image: "/assets/IMG_20250315_112226311.webp",
+      likes: "329",
+      shares: "58"
     }
   ], []);
 
@@ -294,16 +442,22 @@ function Portfolio() {
                       transition={{ duration: 0.4, delay: index * 0.05 }}
                       className="group cursor-pointer"
                     >
-                      <div className="relative overflow-hidden rounded-2xl bg-gray-800 aspect-video">
-                        <OptimizedImage
+                      <div
+                        className="relative overflow-hidden rounded-2xl bg-gray-800 aspect-video cursor-pointer"
+                        onClick={() => {
+                          if (video.embedUrl.includes('youtube.com') || video.embedUrl.includes('youtu.be')) {
+                            openVideoModal(video);
+                          }
+                        }}
+                      >
+                        <img
                           src={video.thumbnail}
                           alt={video.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          useWebP
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300"></div>
-                        
+
                         {/* Play Button */}
                         <div
                           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
@@ -330,10 +484,9 @@ function Portfolio() {
 
                         {/* Video Info Overlay */}
                         <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                          <h3 className="text-lg font-serif font-bold text-white mb-1">{video.title}</h3>
-                          <p className="text-gray-300 text-sm mb-2">{video.role}</p>
+                          <h3 className="text-lg font-serif font-bold text-white mb-2">{video.title}</h3>
                           <div className="flex justify-between items-center">
-                            <span className="text-teal-400 text-sm font-medium">{video.duration}</span>
+                            
                             <div className="flex items-center gap-4 text-xs text-gray-400">
                               <span className="flex items-center gap-1">
                                 <Eye size={12} />

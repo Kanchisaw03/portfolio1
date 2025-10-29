@@ -23,6 +23,28 @@ function App() {
   const shouldReduceMotion = useReducedMotion();
   const [activePortfolioTab, setActivePortfolioTab] = useState('video');
   const [currentProject, setCurrentProject] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Track mobile/desktop view for responsive layout
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Contact form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    service: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
 
   // Featured projects data - memoized to prevent recreation
   const featuredProjects = useMemo(() => [
@@ -30,21 +52,29 @@ function App() {
       id: 1,
       title: "Kurukshetra Arti glimpses",
       type: "Videography",
-      image: "/assets/20240516191907_IMG_9885.jpg",
+      image: "https://img.youtube.com/vi/CMYXxja7T4c/hqdefault.jpg",
       description: "Capturing the divine essence of Kurukshetra Aarti with cinematic storytelling"
     },
     {
       id: 2,
       title: "Delhi Travel Story",
       type: "Videography",
-      image: "/assets/20231111003208_IMG_2808.jpg",
+      image: "https://img.youtube.com/vi/wQODkCMJePs/hqdefault.jpg",
       description: "A visual journey through the bustling streets and vibrant culture of Delhi"
     },
     {
       id: 3,
+      title: "Kedarnath : The Dream Destination",
+      type: "Videography",
+      image: "https://img.youtube.com/vi/sHJVhOaq2po/hqdefault.jpg",
+      description: "An immersive cinematic journey to the sacred Kedarnath, capturing the spiritual beauty and breathtaking landscapes"
+    },
+    
+    {
+      id: 4,
       title: "Moments of Kedarnath",
       type: "Videography",
-      image: "/assets/Screenshot 2025-09-28 200051.jpg",
+      image: "https://img.youtube.com/vi/iHWURVLVMiY/hqdefault.jpg",
       description: "Sacred moments captured at one of India's most revered pilgrimage sites"
     }
   ], []);
@@ -71,6 +101,60 @@ function App() {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
+  };
+
+  // Form handling functions
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // For now, we'll use a simple mailto approach
+      // In production, you'd want to use EmailJS or a backend service
+      const subject = encodeURIComponent(`Portfolio Contact - ${formData.service || 'General Inquiry'}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service || 'Not specified'}\n\nMessage:\n${formData.message}`
+      );
+
+      // Create mailto link
+      const mailtoLink = `mailto:lakshyasinghtomargwl@gmail.com?subject=${subject}&body=${body}`;
+
+      // Open default email client
+      window.open(mailtoLink, '_blank');
+
+      // Show success message
+      setSubmitStatus('success');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        service: '',
+        message: ''
+      });
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -197,9 +281,16 @@ function App() {
           className="absolute left-8 md:left-16 top-1/4 z-20"
         >
           <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-mono tracking-wider leading-tight">
-            PORT-<br />FOLIO
+            PORTFOLIO
           </h1>
+          <div className="mt-4 text-white">
+            <p className="text-sm md:text-base font-mono tracking-wider mb-1">LAKSHYA SINGH TOMAR</p>
+            <p className="text-xs md:text-sm text-gray-400">+91 9179547966</p>
+            <p className="text-xs md:text-sm text-gray-400">lakshyasinghtomargwl@gmail.com</p>
+            
+          </div>
         </motion.div>
+
 
         {/* Animated Photo Strip - Diagonal Band - Pure CSS Animation for Performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -213,23 +304,23 @@ function App() {
             {/* Pure CSS animation - No JavaScript re-renders! */}
             <div
               className={`flex gap-2 items-center whitespace-nowrap ${shouldReduceMotion ? '' : 'animate-photo-carousel'}`}
-              style={{ 
-                marginBottom: '20%',
+              style={{
+                marginBottom: isMobile ? '10%' : '20%', // 10% on mobile, 20% on desktop
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden'
               }}
             >
               {/* Optimized: Reduced from 26 to 8 images for better performance */}
               {[
-                '/assets/20240516191907_IMG_9885.jpg',
-                '/assets/IMG_3740.jpg',
-                '/assets/IMG_9776.jpg',
-                '/assets/20250412_164340.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749986/InShot_20251015_183927319_rbuzph.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749986/InShot_20251015_185418258_bkqzjj.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749984/InShot_20251015_181058909_mbq33i.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749982/InShot_20251015_170812440_j9t6ei.jpg',
                 // Duplicate for seamless loop (only 4 images duplicated)
-                '/assets/20240516191907_IMG_9885.jpg',
-                '/assets/IMG_3740.jpg',
-                '/assets/IMG_9776.jpg',
-                '/assets/20250412_164340.jpg'
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250718_003915652_tvjro3.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250527_131156334_ypanjw.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749964/InShot_20250603_150634673_swy7io.jpg',
+                'https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749962/InShot_20250502_104237033_f4omt6.jpg'
               ].map((img, index) => {
                 const rotations = [-2, 1, -1, 2];
                 const rotation = shouldReduceMotion ? 0 : rotations[index % rotations.length];
@@ -267,10 +358,10 @@ function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="absolute bottom-8 left-8 md:left-16 z-20 text-white"
+          className="absolute bottom-8 left-8 md:left-16 z-20 text-white hidden md:block"
         >
           <p className="text-sm md:text-base font-mono tracking-wider mb-1">LAKSHYA SINGH TOMAR</p>
-          <p className="text-xs md:text-sm text-gray-400">TEL: 079547 96666</p>
+          <p className="text-xs md:text-sm text-gray-400">+91 9179547966</p>
           <p className="text-xs md:text-sm text-gray-400">lakshyasinghtomargwl@gmail.com</p>
           <p className="text-xs md:text-sm text-gray-400 mt-2">MANTE</p>
         </motion.div>
@@ -301,7 +392,7 @@ function App() {
             {/* Row 1: Large tall rectangle - Main focus */}
             <div className="w-full h-48 overflow-hidden">
               <OptimizedImage
-                src="/assets/IMG_3740.jpg"
+                src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250718_003915652_tvjro3.jpg"
                 alt="Portfolio 1"
                 className="w-full h-full object-cover"
                 priority
@@ -314,7 +405,7 @@ function App() {
             <div className="w-full h-24 flex gap-1">
               <div className="w-1/2 h-full overflow-hidden">
                 <OptimizedImage
-                  src="/assets/IMG_9776.jpg"
+                  src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749966/InShot_20250630_003930620_scmy0g.jpg"
                   alt="Portfolio 3"
                   className="w-full h-full object-cover"
                   useWebP
@@ -322,7 +413,7 @@ function App() {
               </div>
               <div className="w-1/2 h-full overflow-hidden">
                 <OptimizedImage
-                  src="/assets/20250412_164340.jpg"
+                  src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749964/InShot_20250603_150634673_swy7io.jpg"
                   alt="Portfolio 4"
                   className="w-full h-full object-cover"
                   useWebP
@@ -333,7 +424,7 @@ function App() {
             {/* Row 4: Thin rectangle */}
             <div className="w-full h-18 overflow-hidden">
               <OptimizedImage
-                src="/assets/IMG_1572.JPG"
+                src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749973/InShot_20251004_123707382_u84jcw.jpg"
                 alt="Portfolio 5"
                 className="w-full h-full object-cover"
                 useWebP
@@ -344,7 +435,7 @@ function App() {
             <div className="w-full h-24 flex gap-1">
               <div className="w-1/2 h-full overflow-hidden">
                 <OptimizedImage
-                  src="/assets/IMG-20250521-WA0032.jpg"
+                  src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749968/InShot_20250814_173153453_qeiawr.jpg"
                   alt="Portfolio 6"
                   className="w-full h-full object-cover"
                   useWebP
@@ -352,7 +443,7 @@ function App() {
               </div>
               <div className="w-1/2 h-full overflow-hidden">
                 <OptimizedImage
-                  src="/assets/IMG20230409161909 (1).jpg"
+                  src="https://res.cloudinary.com/dpgiisvsx/image/upload/v1761749967/InShot_20250718_003403088_vh2lyb.jpg"
                   alt="Portfolio 7"
                   className="w-full h-full object-cover"
                   useWebP
@@ -384,7 +475,7 @@ function App() {
                   textShadow: '1px 1px 3px rgba(0,0,0,0.9)'
                 }}
               >
-                LAKSHYA.X.CHOUDHARY
+                LAKSHYA.SINGH.TOMAR
               </p>
             </div>
           </div>
@@ -399,7 +490,7 @@ function App() {
                 textShadow: '2px 2px 4px rgba(0,0,0,0.7)'
               }}
             >
-              Lakshay Choudhary
+              Lakshay Singh Tomar
             </p>
           </div>
         </motion.div>
@@ -448,11 +539,9 @@ function App() {
               viewport={{ once: true, margin: "0px 0px -100px 0px" }}
               className="flex justify-center lg:justify-start"
             >
-              <div className="relative w-80 h-96 group perspective-1000">
-                {/* 3D Container */}
-                <div className="relative w-full h-full transform-style-preserve-3d transition-transform duration-700 group-hover:rotate-y-12 group-hover:rotate-x-6">
-                  {/* Main Image */}
-                  <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transform translate-z-0">
+              <div className="relative w-80 h-96 group">
+                {/* Simple Image Container */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-105">
                   <OptimizedImage
                     src="/assets/photo.jpg"
                     alt="Lakshya - Cinematographer, Photographer, Editor"
@@ -460,21 +549,14 @@ function App() {
                     priority
                     sizes="(max-width: 768px) 100vw, 320px"
                     useWebP
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent"></div>
-                  </div>
-                  
-                  {/* 3D Shadow Layer */}
-                  <div className="absolute inset-0 rounded-2xl bg-teal-500/20 transform translate-z-[-20px] translate-x-4 translate-y-4 blur-xl opacity-60"></div>
-                  
-                  {/* Depth Layer */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-teal-600/30 to-cyan-600/30 transform translate-z-[-10px] translate-x-2 translate-y-2"></div>
-                  
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400/20 via-cyan-400/20 to-emerald-400/20 blur-lg transform translate-z-[5px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* Border Highlight */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-teal-400/30 transform translate-z-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-transparent"></div>
+
+                  {/* Subtle Shadow */}
+                  <div className="absolute inset-0 rounded-2xl bg-teal-500/10 transform translate-x-2 translate-y-2 blur-md opacity-50"></div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-400/10 via-cyan-400/10 to-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             </motion.div>
@@ -498,20 +580,8 @@ function App() {
                   movement and light. Today my work combines technical skill with artistic vision, and I also take on commercial projects for brands and campaigns. I focus on creating visuals that are not only visually striking but also emotionally engaging. From photography and videography to editing, I approach every project with the same goal: to deliver cinematic stories that stay with the viewer.
               </p>
               
-              <div className="grid grid-cols-3 gap-6 pt-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-teal-400">500+</div>
-                  <div className="text-gray-400">Projects</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400">50+</div>
-                  <div className="text-gray-400">Awards</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-emerald-400">8</div>
-                  <div className="text-gray-400">Years</div>
-                </div>
-              </div>
+              
+              
             </motion.div>
           </div>
       </div>
@@ -568,25 +638,26 @@ function App() {
               {activePortfolioTab === 'video' && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {[
-                    { title: "Kurukshetra Arti glimpses", role: "Director & Cinematographer", image: "/assets/20240516191907_IMG_9885.jpg", duration: "4:32" },
-                    { title: "Delhi Travel Story", role: "Creative Director", image: "/assets/20231111003208_IMG_2808.jpg", duration: "2:45" },
-                    { title: "Moments of Kedarnath", role: "Director & Editor", image: "/assets/Screenshot 2025-09-28 200051.jpg", duration: "8:12" }
+                    { title: "Kurukshetra Arti glimpses", role: "Director & Cinematographer", image: "https://img.youtube.com/vi/CMYXxja7T4c/hqdefault.jpg", duration: "4:32" },
+                    { title: "Delhi Travel Story", role: "Creative Director", image: "https://img.youtube.com/vi/wQODkCMJePs/hqdefault.jpg", duration: "2:45" },
+                    { title: "Kedarnath : The Dream Destination", role: "Director & Cinematographer", image: "https://img.youtube.com/vi/sHJVhOaq2po/hqdefault.jpg", duration: "5:18" },
+                    { title: "Do everything that scares you...", role: "Director & Cinematographer", image: "https://img.youtube.com/vi/YVqNt2TlpLo/hqdefault.jpg", duration: "4:22" },
+                    { title: "Moments of Kedarnath", role: "Director & Editor", image: "https://img.youtube.com/vi/iHWURVLVMiY/hqdefault.jpg", duration: "8:12" }
                   ].map((video, index) => (
                     <div key={index} className="group cursor-pointer" onClick={() => window.open('/portfolio', '_blank')}>
                       <div className="relative overflow-hidden rounded-xl bg-primary-700 aspect-video">
-                        <OptimizedImage
+                        <img
                           src={video.image}
                           alt={`${video.title} - ${video.role}`}
-                          className="w-full h-full group-hover:scale-110 transition-transform duration-500"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          useWebP
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <Play className="w-12 h-12 text-white" />
+                          <Play className="w-12 h-12 text-white cursor-pointer" />
                         </div>
                       </div>
                       <h3 className="text-lg font-semibold mt-4">{video.title}</h3>
-                      <p className="text-gray-400">{video.role} • {video.duration}</p>
+                     
                     </div>
                   ))}
                 </div>
@@ -595,18 +666,15 @@ function App() {
               {activePortfolioTab === 'photo' && (
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                   {[
-                    { title: "Urban Portrait Series", category: "Portrait", image: "/assets/20231111003208_IMG_2808.jpg" },
-                    { title: "Golden Hour Landscape", category: "Landscape", image: "/assets/20240516191907_IMG_9885.jpg" },
-                    { title: "Street Photography", category: "Street", image: "/assets/20250412_164340.jpg" },
-                    { title: "Fashion Editorial", category: "Fashion", image: "/assets/IMG_1390.jpg" },
-                    { title: "Architectural Details", category: "Architecture", image: "/assets/IMG_3740.jpg" },
-                    { title: "Nature Close-up", category: "Nature", image: "/assets/IMG_4571 (1).jpg" }
+                    { title: "Urban Portrait Series", category: "Portrait", image: "/assets/20231111003208_IMG_2808.webp" },
+                    { title: "Golden Hour Landscape", category: "Landscape", image: "/assets/20240516191907_IMG_9885.webp" },
+                    { title: "Street Photography", category: "Street", image: "/assets/20250412_164340.webp" },
+                    { title: "Fashion Editorial", category: "Fashion", image: "/assets/IMG_1390.webp" },
+                    { title: "Architectural Details", category: "Architecture", image: "/assets/IMG_3740.webp" },
+                    { title: "Nature Close-up", category: "Nature", image: "/assets/IMG_4571 (1).webp" }
                   ].map((photo, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="break-inside-avoid group cursor-pointer"
                       onClick={() => window.open('/portfolio', '_blank')}
                     >
@@ -625,7 +693,7 @@ function App() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -679,12 +747,11 @@ function App() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                       <div className={`order-2 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                         <div className="relative group">
-                          <OptimizedImage
+                          <img
                             src={project.image}
                             alt={`${project.title} - ${project.type}`}
-                            className="w-full h-96 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
-                            useWebP
+                            className="w-full h-96 object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/30 to-cyan-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
@@ -817,38 +884,88 @@ function App() {
               viewport={{ once: true }}
               className="glass p-8 rounded-2xl"
             >
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <input
                     type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     placeholder="Your Name"
+                    required
                     className="w-full p-4 bg-white/5 border border-white/10 rounded-lg focus:border-teal-400 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Your Email"
+                    required
                     className="w-full p-4 bg-white/5 border border-white/10 rounded-lg focus:border-teal-400 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <select className="w-full p-4 bg-white/5 border border-white/10 rounded-lg focus:border-teal-400 focus:outline-none transition-colors">
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleInputChange}
+                    className="w-full p-4 bg-white/5 border border-white/10 rounded-lg focus:border-teal-400 focus:outline-none transition-colors"
+                  >
                     <option value="">Select Service</option>
                     <option value="videography">Videography</option>
                     <option value="photography">Photography</option>
+                    <option value="editing">Video Editing</option>
+                    <option value="consulting">Creative Consulting</option>
                     <option value="all">All Services</option>
                   </select>
                 </div>
                 <div>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     rows="5"
                     placeholder="Tell me about your project..."
+                    required
                     className="w-full p-4 bg-white/5 border border-white/10 rounded-lg focus:border-teal-400 focus:outline-none transition-colors resize-none"
                   ></textarea>
                 </div>
-                <button type="submit" className="w-full btn-primary">
-                  Send Message
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300">
+                    <div className="flex items-center gap-2">
+                      <Star className="w-5 h-5" />
+                      Message sent successfully! I'll get back to you soon.
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300">
+                    <div className="flex items-center gap-2">
+                      <X className="w-5 h-5" />
+                      Please fill in all required fields correctly.
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </motion.div>
@@ -877,7 +994,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-300">+91 79547 96666</p>
+                  <p className="text-gray-300">+91 9179547966</p>
                 </div>
               </div>
 

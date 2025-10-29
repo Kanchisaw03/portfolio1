@@ -29,8 +29,8 @@ function Projects() {
       year: "2024",
       client: "Spiritual Documentary",
       duration: "4:32",
-      thumbnail: "/assets/20240516191907_IMG_9885.jpg",
-      heroImage: "/assets/20240516191907_IMG_9885.jpg",
+      thumbnail: "https://img.youtube.com/vi/CMYXxja7T4c/hqdefault.jpg",
+      heroImage: "https://img.youtube.com/vi/CMYXxja7T4c/hqdefault.jpg",
       overview: {
         goal: "Capture the divine essence of Kurukshetra Aarti with cinematic storytelling that conveys spiritual depth",
         inspiration: "Inspired by the sacred rituals and mystical atmosphere of the Ganges ghats",
@@ -56,8 +56,8 @@ function Projects() {
       year: "2024",
       client: "Travel Documentary",
       duration: "2:45",
-      thumbnail: "/assets/20231111003208_IMG_2808.jpg",
-      heroImage: "/assets/20231111003208_IMG_2808.jpg",
+      thumbnail: "https://img.youtube.com/vi/wQODkCMJePs/hqdefault.jpg",
+      heroImage: "https://img.youtube.com/vi/wQODkCMJePs/hqdefault.jpg",
       overview: {
         goal: "Create a visual journey through Delhi's bustling streets and vibrant culture",
         inspiration: "Inspired by the chaotic beauty and rich history of India's capital city",
@@ -83,8 +83,8 @@ function Projects() {
       year: "2024",
       client: "Spiritual Journey Documentary",
       duration: "8:12",
-      thumbnail: "/assets/Screenshot 2025-09-28 200051.jpg",
-      heroImage: "/assets/Screenshot 2025-09-28 200051.jpg",
+      thumbnail: "https://img.youtube.com/vi/iHWURVLVMiY/hqdefault.jpg",
+      heroImage: "https://img.youtube.com/vi/iHWURVLVMiY/hqdefault.jpg",
       overview: {
         goal: "Document sacred moments at Kedarnath temple, one of India's most revered pilgrimage sites",
         inspiration: "Inspired by the spiritual atmosphere and breathtaking Himalayan landscapes",
@@ -99,6 +99,33 @@ function Projects() {
       testimonial: {
         text: "The footage of Kedarnath captured the divine essence of this sacred place. Every frame conveyed the spiritual depth and natural majesty that pilgrims experience.",
         author: "Dr. Anita Verma",
+        rating: 5
+      }
+    },
+    {
+      id: 4,
+      title: "Kedarnath : The Dream Destination",
+      category: "Videography",
+      role: "Director & Cinematographer",
+      year: "2024",
+      client: "Spiritual Journey Documentary",
+      duration: "5:18",
+      thumbnail: "https://img.youtube.com/vi/sHJVhOaq2po/hqdefault.jpg",
+      heroImage: "https://img.youtube.com/vi/sHJVhOaq2po/hqdefault.jpg",
+      overview: {
+        goal: "Create an immersive cinematic journey to the sacred Kedarnath, capturing the spiritual beauty and breathtaking landscapes",
+        inspiration: "Inspired by the divine connection between ancient spirituality and majestic Himalayan landscapes",
+        storytelling: "Combining spiritual depth with cinematic excellence to showcase Kedarnath's sacred significance"
+      },
+      process: {
+        timeline: "2 weeks pre-production planning the sacred journey, 5-day intensive shoot in Kedarnath region, 3 weeks cinematic post-production",
+        equipment: "Canon EOS R5 with cinema lenses, DJI Mavic 3 Pro for aerial cinematography, specialized high-altitude camera gear",
+        approach: "Respectful and immersive storytelling that honors the sacred nature while delivering cinematic excellence"
+      },
+      finalOutput: "https://www.youtube.com/embed/sHJVhOaq2po",
+      testimonial: {
+        text: "This cinematic journey to Kedarnath perfectly captured the spiritual essence and natural majesty of this sacred destination. The storytelling was both reverent and visually stunning.",
+        author: "Rajesh Sharma",
         rating: 5
       }
     }
@@ -143,7 +170,7 @@ function Projects() {
                 className="w-full h-full object-cover"
                 priority
                 sizes="100vw"
-                useWebP
+                useWebP={project.heroImage.startsWith('/')}
               />
               <div className="absolute inset-0 bg-gray-900/60"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900/40"></div>
@@ -478,7 +505,7 @@ function Projects() {
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    useWebP
+                    useWebP={project.thumbnail.startsWith('/')}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
                   <div className="absolute inset-0 bg-teal-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
